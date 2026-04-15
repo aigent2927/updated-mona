@@ -3,17 +3,48 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
-// Editorial images with varied positioning for organic layout
+// First group: exact 4 images before the text block
 const editorialImages = [
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_28-Wm47vKHouboCZAdtYl1uJUyNCjXEhd.jpg',
     alt: 'Model with puppet strings and colorful layered vest',
     from: 'left',
     offsetX: '5%',
-    width: 'w-[70%] md:w-[38%]',
+    width: 'w-[65%] md:w-[36%]',
     aspect: 'aspect-[2/3]',
-    marginBottom: 'mb-12',
+    marginBottom: 'mb-0',
   },
+  {
+    src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_06-ZoLWXp5zcncWvF2sBmO17NL8JIxl8n.jpg',
+    alt: 'Overhead view of model reclined on patterned floor',
+    from: 'right',
+    offsetX: '2%',
+    width: 'w-[82%] md:w-[52%]',
+    aspect: 'aspect-[3/2]',
+    marginBottom: 'mb-20',
+  },
+  {
+    src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_27-chlqhAdAsvMoOzXUZOhM77jRTGq1ZY.jpg',
+    alt: 'Model with puffy sleeve blouse and floral skirt',
+    from: 'left',
+    offsetX: '14%',
+    width: 'w-[55%] md:w-[30%]',
+    aspect: 'aspect-[2/3]',
+    marginBottom: 'mb-16',
+  },
+  {
+    src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_17-rmsGNl6Ona8KyCMY56s41CFepdj0El.jpg',
+    alt: 'Model in tweed jacket with burgundy pants',
+    from: 'right',
+    offsetX: '8%',
+    width: 'w-[58%] md:w-[33%]',
+    aspect: 'aspect-[2/3]',
+    marginBottom: 'mb-16',
+  },
+]
+
+// Second group: remaining editorial images after the text block
+const editorialImagesAfter = [
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_14-USAxdSCRHMUr25TsjY3mG1lswT96jk.jpg',
     alt: 'Seated model with star collar and brocade gown',
@@ -21,48 +52,17 @@ const editorialImages = [
     offsetX: '12%',
     width: 'w-[55%] md:w-[28%]',
     aspect: 'aspect-[2/3]',
-    marginBottom: 'mb-32',
+    marginBottom: 'mb-20',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_38-G5rZV83cOcwbZWEfzKa0PswptXWEEO.jpg',
     alt: 'Two models in kitchen scene',
     from: 'left',
-    offsetX: '18%',
-    width: 'w-[65%] md:w-[42%]',
+    offsetX: '10%',
+    width: 'w-[62%] md:w-[36%]',
     aspect: 'aspect-[2/3]',
-    marginBottom: 'mb-16',
+    marginBottom: 'mb-32',
   },
-  {
-    src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_06-ZoLWXp5zcncWvF2sBmO17NL8JIxl8n.jpg',
-    alt: 'Overhead view of model reclined on patterned floor',
-    from: 'right',
-    offsetX: '0%',
-    width: 'w-[85%] md:w-[55%]',
-    aspect: 'aspect-[3/2]',
-    marginBottom: 'mb-28',
-  },
-  {
-    src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_33-Sq8nyhm0Y4aBgZ7VcJxwZMvpTAjCTU.jpg',
-    alt: 'Model seated in checkered outfit with puppet string',
-    from: 'left',
-    offsetX: '8%',
-    width: 'w-[50%] md:w-[26%]',
-    aspect: 'aspect-[2/3]',
-    marginBottom: 'mb-20',
-  },
-  {
-    src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_27-chlqhAdAsvMoOzXUZOhM77jRTGq1ZY.jpg',
-    alt: 'Model with puffy sleeve blouse and floral skirt',
-    from: 'right',
-    offsetX: '15%',
-    width: 'w-[60%] md:w-[34%]',
-    aspect: 'aspect-[2/3]',
-    marginBottom: 'mb-10',
-  },
-]
-
-// Second group of editorial images after text
-const editorialImagesAfter = [
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_35-7E2MRMsF40I6Q7FIYcSxqHw5ioqxON.jpg',
     alt: 'Two models in checkered outfits on daybed',
@@ -89,15 +89,6 @@ const editorialImagesAfter = [
     width: 'w-[90%] md:w-[58%]',
     aspect: 'aspect-[3/2]',
     marginBottom: 'mb-32',
-  },
-  {
-    src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_17-rmsGNl6Ona8KyCMY56s41CFepdj0El.jpg',
-    alt: 'Model in tweed jacket with burgundy pants',
-    from: 'right',
-    offsetX: '10%',
-    width: 'w-[58%] md:w-[32%]',
-    aspect: 'aspect-[2/3]',
-    marginBottom: 'mb-18',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_19-Delehd6usN5SYVBg679Yz4zbW3rdli.jpg',
@@ -176,8 +167,10 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Bidirectional: true when visible, false when not
-          setIsVisible(entry.isIntersecting)
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+            observer.unobserve(entry.target)
+          }
         })
       },
       {
@@ -190,10 +183,7 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
     return () => observer.disconnect()
   }, [])
 
-  // Calculate the horizontal translation for enter/exit
   const translateX = from === 'left' ? '-100px' : '100px'
-
-  // Position styles based on direction
   const positionStyle = from === 'left'
     ? { marginLeft: offsetX, marginRight: 'auto' }
     : { marginRight: offsetX, marginLeft: 'auto' }
@@ -222,21 +212,164 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
   )
 }
 
-function LookbookImage({ src, alt }: { src: string; alt: string }) {
+function CreditBlock({
+  lines,
+  align,
+  offsetX,
+  className = '',
+}: {
+  lines: string[]
+  align: 'left' | 'right'
+  offsetX: string
+  className?: string
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const element = ref.current
+    if (!element) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.2, rootMargin: '-5% 0px -5% 0px' }
+    )
+
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+
+  const positionStyle = align === 'left'
+    ? { marginLeft: offsetX, marginRight: 'auto' }
+    : { marginRight: offsetX, marginLeft: 'auto' }
+
   return (
-    <div className="relative flex-1 min-w-0 aspect-[3/4] overflow-hidden transition-all duration-500 ease-out hover:flex-[1.3]">
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 50vw, 12.5vw"
-      />
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        ...positionStyle,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(18px)',
+        transition: 'opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)',
+      }}
+    >
+      {lines.map((line, i) => (
+        <p
+          key={i}
+          className="font-sans text-[9px] tracking-[0.18em] uppercase text-muted-foreground/60 leading-[2.2]"
+          style={{ textAlign: align }}
+        >
+          {line}
+        </p>
+      ))}
+    </div>
+  )
+}
+
+function LookbookImage({ src, alt, onClick }: { src: string; alt: string; onClick: () => void }) {
+  return (
+    <div
+      className="relative flex-1 min-w-0 aspect-[3/4] group cursor-pointer"
+      style={{ zIndex: 0 }}
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      aria-label={`Open ${alt} fullscreen`}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick() }}
+    >
+      <div
+        className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-[1.07] group-hover:z-10"
+        style={{ transformOrigin: 'center center' }}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 50vw, 12.5vw"
+        />
+      </div>
+    </div>
+  )
+}
+
+function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  useEffect(() => {
+    // Lock scroll
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', handleKey)
+
+    return () => {
+      document.body.style.overflow = prev
+      document.removeEventListener('keydown', handleKey)
+    }
+  }, [onClose])
+
+  return (
+    <div
+      className="fixed inset-0 z-[9999] flex items-center justify-center"
+      style={{ backgroundColor: 'rgba(0,0,0,0.92)' }}
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={alt}
+    >
+      {/* Close button */}
+      <button
+        className="absolute top-6 right-8 font-sans text-[10px] tracking-[0.3em] uppercase text-white/70 hover:text-white transition-colors"
+        onClick={(e) => { e.stopPropagation(); onClose() }}
+        aria-label="Close lightbox"
+      >
+        Close
+      </button>
+
+      {/* Image — natural size, max constrained to viewport */}
+      <div
+        className="relative"
+        onClick={(e) => e.stopPropagation()}
+        style={{ maxHeight: '88vh', maxWidth: '85vw' }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt={alt}
+          style={{
+            display: 'block',
+            maxHeight: '88vh',
+            maxWidth: '85vw',
+            width: 'auto',
+            height: 'auto',
+            objectFit: 'contain',
+          }}
+        />
+      </div>
     </div>
   )
 }
 
 export function ProjectsSection() {
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
+  const [lightboxAlt, setLightboxAlt] = useState<string>('')
+
+  const openLightbox = (src: string, alt: string) => {
+    setLightboxSrc(src)
+    setLightboxAlt(alt)
+  }
+  const closeLightbox = () => setLightboxSrc(null)
+
   return (
     <section
       id="projects"
@@ -255,14 +388,70 @@ export function ProjectsSection() {
         </span>
       </div>
 
-      {/* First group of editorial images */}
+      {/* ── First group of 4 images ─────────────────────────────────────── */}
       <div className="flex flex-col">
-        {editorialImages.map((img) => (
-          <EditorialImage key={img.src} {...img} from={img.from as 'left' | 'right'} />
-        ))}
+
+        {/* Image 1 (_28) + secondary support image (_14) side by side in the same row */}
+        <div className="relative mb-20">
+          {/* Primary: left-aligned */}
+          <EditorialImage
+            src={editorialImages[0].src}
+            alt={editorialImages[0].alt}
+            from="left"
+            offsetX="5%"
+            width="w-[65%] md:w-[36%]"
+            aspect="aspect-[2/3]"
+            marginBottom="mb-0"
+          />
+          {/* Secondary support image: lower-right, smaller, offset inward */}
+          <div
+            className="absolute bottom-[-60px] right-[3%] md:right-[12%] w-[38%] md:w-[22%]"
+            style={{ zIndex: 1 }}
+          >
+            <SecondaryImage
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_33-Sq8nyhm0Y4aBgZ7VcJxwZMvpTAjCTU.jpg"
+              alt="Model seated in checkered outfit with puppet string"
+            />
+          </div>
+        </div>
+
+        {/* Credits: sit in the white space to the right of image 1 */}
+        <CreditBlock
+          lines={[
+            'Designer: @01.mariona',
+            'Photo: Angely Quintero @annge.ly',
+            'Victor Alcalde @valcalde_',
+          ]}
+          align="right"
+          offsetX="8%"
+          className="mb-16 mt-16"
+        />
+
+        {/* Image 2 (_06) */}
+        <EditorialImage {...editorialImages[1]} from={editorialImages[1].from as 'left' | 'right'} />
+
+        {/* Credits: opposite side from image 2 (image is right-aligned, credits sit left) */}
+        <CreditBlock
+          lines={[
+            'Photo assistant: Albert Creus @creusalbert',
+            'Editing: Albert Creus @creusalbert',
+            'Video: Albert Creus @creusalbert',
+            'Joel Matilla @joelmatillagonzalez',
+          ]}
+          align="left"
+          offsetX="5%"
+          className="mb-16"
+        />
+
+        {/* Image 3 (_27) */}
+        <EditorialImage {...editorialImages[2]} from={editorialImages[2].from as 'left' | 'right'} />
+
+        {/* Image 4 (_17) */}
+        <EditorialImage {...editorialImages[3]} from={editorialImages[3].from as 'left' | 'right'} />
+
       </div>
 
-      {/* Collection text block */}
+      {/* ── Collection text block ────────────────────────────────────────── */}
       <div className="flex flex-col items-center text-center py-20 md:py-32 px-4 md:px-16 lg:px-32 max-w-4xl mx-auto">
         <h3 className="font-logo text-3xl md:text-4xl text-foreground mb-10 text-balance leading-tight">
           Puppet Riot FW25
@@ -272,24 +461,152 @@ export function ProjectsSection() {
         </p>
       </div>
 
-      {/* Second group of editorial images */}
+      {/* ── Second group of images ───────────────────────────────────────── */}
       <div className="flex flex-col">
-        {editorialImagesAfter.map((img) => (
-          <EditorialImage key={img.src} {...img} from={img.from as 'left' | 'right'} />
-        ))}
+
+        <EditorialImage {...editorialImagesAfter[0]} from={editorialImagesAfter[0].from as 'left' | 'right'} />
+
+        {/* Credits in the white space beside / below image 0 */}
+        <CreditBlock
+          lines={[
+            'Muah: Júlia Masferrer @saturn.mua',
+            'Heidi Ruiz @muabyheidi',
+          ]}
+          align="left"
+          offsetX="5%"
+          className="mb-14"
+        />
+
+        <EditorialImage {...editorialImagesAfter[1]} from={editorialImagesAfter[1].from as 'left' | 'right'} />
+
+        {/* Credits in the open space — right side, between images */}
+        <CreditBlock
+          lines={[
+            'Assistant: Argentina Belchez @argentinabr',
+            'Carlos Conesa @carlosconesa_14',
+          ]}
+          align="right"
+          offsetX="6%"
+          className="mb-16"
+        />
+
+        <EditorialImage {...editorialImagesAfter[2]} from={editorialImagesAfter[2].from as 'left' | 'right'} />
+
+        <EditorialImage {...editorialImagesAfter[3]} from={editorialImagesAfter[3].from as 'left' | 'right'} />
+
+        {/* Credits in white space — left side */}
+        <CreditBlock
+          lines={[
+            'Talents: Kiko Collado @iamkoki_xd',
+            'Diego Salazar @die_go_s.r',
+            'Yago Morales @yaagooo_',
+            'Manuel Guadagnuolo @earthlingcc',
+            'Omar Bouazzaoui @omarbouazzaouiii',
+          ]}
+          align="left"
+          offsetX="8%"
+          className="mb-16"
+        />
+
+        <EditorialImage {...editorialImagesAfter[4]} from={editorialImagesAfter[4].from as 'left' | 'right'} />
+
+        <EditorialImage {...editorialImagesAfter[5]} from={editorialImagesAfter[5].from as 'left' | 'right'} />
+
+        {/* Final credits — floated into the open space on the right */}
+        <CreditBlock
+          lines={[
+            'Ainoa Baumann @bemydagger',
+            'Marcos Moreira @marx.os05',
+            'Antón Pérez @antonsantalla',
+            'Location: Torre Modernista Abadal @torre.abadal',
+          ]}
+          align="right"
+          offsetX="4%"
+          className="mb-16"
+        />
+
+        <EditorialImage {...editorialImagesAfter[6]} from={editorialImagesAfter[6].from as 'left' | 'right'} />
+
+        {/* Final tailoring credits */}
+        <CreditBlock
+          lines={[
+            'Tailoring: Tabata Molina @tabatamolina.atelier',
+            'Trinidad Molina @trinitymolina.m',
+            'Treydee @treydee._',
+            'Susana Puertas @susanapuertas.cuir',
+          ]}
+          align="left"
+          offsetX="10%"
+          className="mb-10"
+        />
+
       </div>
 
-      {/* Lookbook section */}
+      {/* ── Lookbook ─────────────────────────────────────────────────────── */}
       <div className="mt-32">
         <h3 className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mb-12 text-center">
           Lookbook
         </h3>
-        <div className="flex w-full">
+        <div className="flex w-full overflow-visible">
           {lookbookImages.map((img) => (
-            <LookbookImage key={img.src} {...img} />
+            <LookbookImage
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              onClick={() => openLightbox(img.src, img.alt)}
+            />
           ))}
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightboxSrc && (
+        <Lightbox src={lightboxSrc} alt={lightboxAlt} onClose={closeLightbox} />
+      )}
     </section>
+  )
+}
+
+// A smaller, secondary image that fades in on scroll (no slide)
+function SecondaryImage({ src, alt }: { src: string; alt: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const element = ref.current
+    if (!element) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div
+      ref={ref}
+      className="relative w-full aspect-[2/3] overflow-hidden"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+        transition: 'opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.2s, transform 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.2s',
+      }}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 38vw, 22vw"
+      />
+    </div>
   )
 }

@@ -38,9 +38,11 @@ export function AboutSection() {
               creative pattern maker after.
             </p>
             <p className="text-base font-light text-muted-foreground leading-relaxed max-w-lg text-balance">
-              Reclaiming textiles with a past — antique quilts, tapestries,
-              and found objects. Developing silhouettes through technical rigor
-              and exaggerated forms.
+              Observing a contemporary landscape that feels increasingly neutral,
+              functional, and quiet, the work responds through contrast: through
+              visual strength, ornament, and the belief that fashion should move,
+              provoke, and captivate. Rather than aiming to please, it seeks to
+              spark curiosity and command presence.
             </p>
 
             {/* Credentials */}
