@@ -22,7 +22,7 @@ export function HeroSection() {
 
       {/* Scroll indicator */}
       <div
-        className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
         aria-hidden="true"
       >
         <span className="text-[9px] tracking-[0.3em] uppercase text-white/75 font-sans">
