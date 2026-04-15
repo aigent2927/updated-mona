@@ -379,11 +379,11 @@ export function ProjectsSection() {
       <div className="flex items-baseline justify-between mb-20 md:mb-28">
         <h2
           id="projects-heading"
-          className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground"
+          className="text-[12px] tracking-[0.25em] uppercase text-muted-foreground"
         >
           Projects
         </h2>
-        <span className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground/50">
+        <span className="text-[12px] tracking-[0.2em] uppercase text-muted-foreground/50">
           Selected Work
         </span>
       </div>
@@ -544,7 +544,7 @@ export function ProjectsSection() {
 
       {/* ── Lookbook ─────────────────────────────────────────────────────── */}
       <div className="mt-32">
-        <h3 className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mb-12 text-center">
+        <h3 className="text-[12px] tracking-[0.25em] uppercase text-muted-foreground mb-12 text-center">
           Lookbook
         </h3>
         <div className="flex w-full overflow-visible">
