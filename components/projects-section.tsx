@@ -304,12 +304,14 @@ function LookbookImage({ src, alt, onClick }: { src: string; alt: string; onClic
 function Lightbox({
   src,
   alt,
+  index,
   onClose,
   onPrev,
   onNext,
 }: {
   src: string
   alt: string
+  index: number
   onClose: () => void
   onPrev: () => void
   onNext: () => void
@@ -391,6 +393,15 @@ function Lightbox({
             objectFit: 'contain',
           }}
         />
+
+        {/* Rotated look label — lower-left of image */}
+        <span
+          className="absolute left-0 bottom-8 text-[12px] tracking-[0.25em] uppercase text-white/80 font-sans pointer-events-none select-none"
+          style={{ transform: 'rotate(-90deg)', transformOrigin: 'left bottom', whiteSpace: 'nowrap', left: '-2rem' }}
+          aria-hidden="true"
+        >
+          Look {index + 1}
+        </span>
       </div>
     </div>
   )
@@ -488,7 +499,7 @@ export function ProjectsSection() {
 
       </div>
 
-      {/* ── Collection text block ──────────���───────���─────────────────────── */}
+      {/* ── Collection text block ──────────�����───────���─────────────────────── */}
       <div className="flex flex-col items-center text-center py-20 md:py-32 px-4 md:px-16 lg:px-32 max-w-4xl mx-auto">
         <h3 className="font-logo text-3xl md:text-4xl text-foreground mb-10 text-balance leading-tight">
           Puppet Riot FW25
@@ -602,6 +613,7 @@ export function ProjectsSection() {
         <Lightbox
           src={lookbookImages[lightboxIndex].src}
           alt={lookbookImages[lightboxIndex].alt}
+          index={lightboxIndex}
           onClose={closeLightbox}
           onPrev={prevLightbox}
           onNext={nextLightbox}
