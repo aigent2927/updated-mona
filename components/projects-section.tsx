@@ -488,7 +488,7 @@ export function ProjectsSection() {
 
       </div>
 
-      {/* ── Collection text block ──────────────────���─────────────────────── */}
+      {/* ── Collection text block ──────────���───────���─────────────────────── */}
       <div className="flex flex-col items-center text-center py-20 md:py-32 px-4 md:px-16 lg:px-32 max-w-4xl mx-auto">
         <h3 className="font-logo text-3xl md:text-4xl text-foreground mb-10 text-balance leading-tight">
           Puppet Riot FW25
@@ -595,13 +595,6 @@ export function ProjectsSection() {
           ))}
         </div>
 
-        {/* More to come */}
-        <div className="flex flex-col items-center mt-16">
-          <hr className="w-8 border-t border-border mb-8" />
-          <p className="font-logo text-3xl md:text-4xl text-muted-foreground/60 font-light">
-            More to come
-          </p>
-        </div>
       </div>
 
       {/* Lightbox */}
