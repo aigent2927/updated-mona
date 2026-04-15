@@ -116,7 +116,7 @@ export function ContactSection() {
             {submitted ? (
               <div className="flex flex-col justify-center h-full min-h-48">
                 <p className="text-sm font-light text-muted-foreground leading-relaxed">
-                  Message received. I&apos;ll be in touch.
+                  We&apos;ll be in touch.
                 </p>
               </div>
             ) : (
