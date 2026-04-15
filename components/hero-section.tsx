@@ -34,7 +34,8 @@ export function HeroSection() {
           viewBox="0 0 10 16"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="text-white/50 animate-bounce-subtle"
+          className="text-white/50"
+          style={{ animation: 'bounce-subtle 2s ease-in-out infinite' }}
         >
           <path
             d="M5 0L5 14M5 14L1 10M5 14L9 10"

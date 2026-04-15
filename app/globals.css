@@ -118,11 +118,14 @@
 }
 
 @keyframes bounce-subtle {
-  0%, 100% {
-    transform: translateY(0);
+  0% {
+    transform: translateY(0px);
   }
   50% {
-    transform: translateY(5px);
+    transform: translateY(6px);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }
 
