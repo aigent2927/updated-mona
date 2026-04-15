@@ -2,22 +2,29 @@
 
 import { useEffect, useState } from 'react'
 
-// Phase timeline:
-// 'hold'    — black screen, logo breathes (0 → 900ms)
-// 'reveal'  — logo scales up dramatically, background fades out (900ms → 1700ms)
-// 'done'    — overlay removed from DOM
+// Phase timeline (first visit):  hold → reveal → done
+// Phase timeline (refresh):       hold → done  (no reveal/zoom)
 type Phase = 'hold' | 'reveal' | 'done'
 
 export function IntroAnimation() {
   const [phase, setPhase] = useState<Phase>('hold')
 
   useEffect(() => {
-    const revealTimer = setTimeout(() => setPhase('reveal'), 900)
-    const doneTimer  = setTimeout(() => setPhase('done'),   1750)
+    const isFirstVisit = !sessionStorage.getItem('mona_visited')
+    sessionStorage.setItem('mona_visited', '1')
 
-    return () => {
-      clearTimeout(revealTimer)
-      clearTimeout(doneTimer)
+    if (isFirstVisit) {
+      // First visit: blink (900ms) then zoom-reveal (800ms)
+      const revealTimer = setTimeout(() => setPhase('reveal'), 900)
+      const doneTimer   = setTimeout(() => setPhase('done'),   1750)
+      return () => {
+        clearTimeout(revealTimer)
+        clearTimeout(doneTimer)
+      }
+    } else {
+      // Refresh: blink only (same 900ms hold), then straight to done
+      const doneTimer = setTimeout(() => setPhase('done'), 900)
+      return () => clearTimeout(doneTimer)
     }
   }, [])
 
