@@ -1,101 +1,125 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-// Editorial images with aspect ratios preserved
-const editorialImagesBefore = [
+// Editorial images with varied positioning for organic layout
+const editorialImages = [
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_28-Wm47vKHouboCZAdtYl1uJUyNCjXEhd.jpg',
-    alt: 'Puppet Riot FW25 Editorial - Model with puppet strings and colorful layered vest',
-    position: 'left',
-    size: 'medium',
-    aspect: 'portrait',
+    alt: 'Model with puppet strings and colorful layered vest',
+    from: 'left',
+    offsetX: '5%',
+    width: 'w-[70%] md:w-[38%]',
+    aspect: 'aspect-[2/3]',
+    marginBottom: 'mb-12',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_14-USAxdSCRHMUr25TsjY3mG1lswT96jk.jpg',
-    alt: 'Puppet Riot FW25 Editorial - Seated model with star collar and brocade gown',
-    position: 'right',
-    size: 'small',
-    aspect: 'portrait',
+    alt: 'Seated model with star collar and brocade gown',
+    from: 'right',
+    offsetX: '12%',
+    width: 'w-[55%] md:w-[28%]',
+    aspect: 'aspect-[2/3]',
+    marginBottom: 'mb-32',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_38-G5rZV83cOcwbZWEfzKa0PswptXWEEO.jpg',
-    alt: 'Puppet Riot FW25 Editorial - Two models in kitchen scene',
-    position: 'center',
-    size: 'medium',
-    aspect: 'portrait',
+    alt: 'Two models in kitchen scene',
+    from: 'left',
+    offsetX: '18%',
+    width: 'w-[65%] md:w-[42%]',
+    aspect: 'aspect-[2/3]',
+    marginBottom: 'mb-16',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_06-ZoLWXp5zcncWvF2sBmO17NL8JIxl8n.jpg',
-    alt: 'Puppet Riot FW25 Editorial - Overhead view of model reclined on patterned floor',
-    position: 'right',
-    size: 'wide',
-    aspect: 'landscape',
+    alt: 'Overhead view of model reclined on patterned floor',
+    from: 'right',
+    offsetX: '0%',
+    width: 'w-[85%] md:w-[55%]',
+    aspect: 'aspect-[3/2]',
+    marginBottom: 'mb-28',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_33-Sq8nyhm0Y4aBgZ7VcJxwZMvpTAjCTU.jpg',
-    alt: 'Puppet Riot FW25 Editorial - Model seated in checkered outfit with puppet string',
-    position: 'left',
-    size: 'small',
-    aspect: 'portrait',
+    alt: 'Model seated in checkered outfit with puppet string',
+    from: 'left',
+    offsetX: '8%',
+    width: 'w-[50%] md:w-[26%]',
+    aspect: 'aspect-[2/3]',
+    marginBottom: 'mb-20',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_27-chlqhAdAsvMoOzXUZOhM77jRTGq1ZY.jpg',
-    alt: 'Puppet Riot FW25 Editorial - Model with puffy sleeve blouse and floral skirt',
-    position: 'right',
-    size: 'medium',
-    aspect: 'portrait',
+    alt: 'Model with puffy sleeve blouse and floral skirt',
+    from: 'right',
+    offsetX: '15%',
+    width: 'w-[60%] md:w-[34%]',
+    aspect: 'aspect-[2/3]',
+    marginBottom: 'mb-10',
   },
 ]
 
-// Editorial images - after text block
+// Second group of editorial images after text
 const editorialImagesAfter = [
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_35-7E2MRMsF40I6Q7FIYcSxqHw5ioqxON.jpg',
-    alt: 'Puppet Riot FW25 Editorial - Two models in checkered outfits on daybed',
-    position: 'left',
-    size: 'medium',
-    aspect: 'portrait',
+    alt: 'Two models in checkered outfits on daybed',
+    from: 'right',
+    offsetX: '6%',
+    width: 'w-[68%] md:w-[40%]',
+    aspect: 'aspect-[2/3]',
+    marginBottom: 'mb-24',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_02-FO30gUT6uwU222bsEbLYRwgqZSjmjb.jpg',
-    alt: 'Puppet Riot FW25 Editorial - Seated model in red hand-knit sweater',
-    position: 'right',
-    size: 'small',
-    aspect: 'portrait',
+    alt: 'Seated model in red hand-knit sweater',
+    from: 'left',
+    offsetX: '20%',
+    width: 'w-[52%] md:w-[30%]',
+    aspect: 'aspect-[2/3]',
+    marginBottom: 'mb-14',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_22-FmbV1UwqHCw1MSAPvCJe5rQiJ5b2Io.jpg',
-    alt: 'Puppet Riot FW25 Editorial - Library scene with floral jacket and red tiered skirt',
-    position: 'center',
-    size: 'wide',
-    aspect: 'landscape',
+    alt: 'Library scene with floral jacket and red tiered skirt',
+    from: 'left',
+    offsetX: '0%',
+    width: 'w-[90%] md:w-[58%]',
+    aspect: 'aspect-[3/2]',
+    marginBottom: 'mb-32',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_17-rmsGNl6Ona8KyCMY56s41CFepdj0El.jpg',
-    alt: 'Puppet Riot FW25 Editorial - Model in tweed jacket with burgundy pants',
-    position: 'left',
-    size: 'medium',
-    aspect: 'portrait',
+    alt: 'Model in tweed jacket with burgundy pants',
+    from: 'right',
+    offsetX: '10%',
+    width: 'w-[58%] md:w-[32%]',
+    aspect: 'aspect-[2/3]',
+    marginBottom: 'mb-18',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_19-Delehd6usN5SYVBg679Yz4zbW3rdli.jpg',
-    alt: 'Puppet Riot FW25 Editorial - Low angle of model in tweed jacket',
-    position: 'right',
-    size: 'wide',
-    aspect: 'landscape',
+    alt: 'Low angle of model in tweed jacket',
+    from: 'right',
+    offsetX: '0%',
+    width: 'w-[80%] md:w-[50%]',
+    aspect: 'aspect-[3/2]',
+    marginBottom: 'mb-26',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_25-WYZR0p5tHl51cag4r9mSV7xmM6udDZ.jpg',
-    alt: 'Puppet Riot FW25 Editorial - Seated model in teal fur coat',
-    position: 'center',
-    size: 'small',
-    aspect: 'portrait',
+    alt: 'Seated model in teal fur coat',
+    from: 'left',
+    offsetX: '25%',
+    width: 'w-[48%] md:w-[25%]',
+    aspect: 'aspect-[2/3]',
+    marginBottom: 'mb-20',
   },
 ]
 
-// Lookbook images for horizontal strip
+// Lookbook images
 const lookbookImages = [
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Lookbook_01-ebuNAn3CMp3Z7jZIxp8VF7wgqKQrHy.jpg',
@@ -134,92 +158,64 @@ const lookbookImages = [
 interface EditorialImageProps {
   src: string
   alt: string
-  position: string
-  size: string
+  from: 'left' | 'right'
+  offsetX: string
+  width: string
   aspect: string
-  index: number
-  groupOffset: number
+  marginBottom: string
 }
 
-function EditorialImage({ src, alt, position, size, aspect, index, groupOffset }: EditorialImageProps) {
+function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }: EditorialImageProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
-  const handleIntersection = useCallback((entries: IntersectionObserverEntry[]) => {
-    const [entry] = entries
-    // Bidirectional: show when entering, hide when leaving
-    setIsVisible(entry.isIntersecting)
+  useEffect(() => {
+    const element = ref.current
+    if (!element) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Bidirectional: true when visible, false when not
+          setIsVisible(entry.isIntersecting)
+        })
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '-8% 0px -8% 0px',
+      }
+    )
+
+    observer.observe(element)
+    return () => observer.disconnect()
   }, [])
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.08,
-      rootMargin: '-5% 0px -12% 0px',
-    })
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [handleIntersection])
+  // Calculate the horizontal translation for enter/exit
+  const translateX = from === 'left' ? '-100px' : '100px'
 
-  // Alignment classes based on position
-  const alignmentClasses = {
-    left: 'mr-auto ml-0 md:ml-12 lg:ml-20',
-    right: 'ml-auto mr-0 md:mr-12 lg:mr-20',
-    center: 'mx-auto',
-  }[position] || 'mx-auto'
-
-  // Size classes - width
-  const sizeClasses = {
-    small: 'w-[60%] md:w-[35%] lg:w-[30%]',
-    medium: 'w-[75%] md:w-[45%] lg:w-[38%]',
-    wide: 'w-[90%] md:w-[60%] lg:w-[52%]',
-  }[size] || 'w-[65%] md:w-[40%]'
-
-  // Aspect ratio based on image orientation
-  const aspectClasses = aspect === 'landscape' ? 'aspect-[3/2]' : 'aspect-[2/3]'
-
-  // Animation direction based on position
-  const getTransform = () => {
-    if (position === 'right') return 'translateX(60px)'
-    if (position === 'left') return 'translateX(-60px)'
-    return 'translateY(40px)'
-  }
-
-  // Staggered timing with rhythm variation
-  const getDelay = () => {
-    const baseDelay = (index + groupOffset) * 60
-    // Add subtle variation for rhythm
-    const variation = index % 3 === 0 ? 30 : index % 2 === 0 ? -20 : 0
-    return baseDelay + variation
-  }
-
-  // Margin variation for visual rhythm
-  const marginClasses = {
-    0: 'mb-20 md:mb-32',
-    1: 'mb-16 md:mb-24',
-    2: 'mb-24 md:mb-36',
-    3: 'mb-14 md:mb-22',
-    4: 'mb-20 md:mb-28',
-    5: 'mb-18 md:mb-30',
-  }[index % 6] || 'mb-20 md:mb-28'
+  // Position styles based on direction
+  const positionStyle = from === 'left'
+    ? { marginLeft: offsetX, marginRight: 'auto' }
+    : { marginRight: offsetX, marginLeft: 'auto' }
 
   return (
     <div
       ref={ref}
-      className={`${sizeClasses} ${alignmentClasses} ${marginClasses}`}
+      className={`${width} ${marginBottom}`}
       style={{
+        ...positionStyle,
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translate(0)' : getTransform(),
-        transition: `opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)`,
-        transitionDelay: `${getDelay()}ms`,
+        transform: isVisible ? 'translateX(0)' : `translateX(${translateX})`,
+        transition: 'opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)',
       }}
     >
-      <div className={`relative ${aspectClasses} overflow-hidden group`}>
+      <div className={`relative ${aspect} overflow-hidden`}>
         <Image
           src={src}
           alt={alt}
           fill
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-          sizes="(max-width: 768px) 85vw, (max-width: 1200px) 55vw, 45vw"
+          className="object-cover"
+          sizes="(max-width: 768px) 80vw, 50vw"
         />
       </div>
     </div>
@@ -259,15 +255,15 @@ export function ProjectsSection() {
         </span>
       </div>
 
-      {/* Scattered editorial images - first group */}
+      {/* First group of editorial images */}
       <div className="flex flex-col">
-        {editorialImagesBefore.map((img, i) => (
-          <EditorialImage key={img.src} {...img} index={i} groupOffset={0} />
+        {editorialImages.map((img) => (
+          <EditorialImage key={img.src} {...img} from={img.from as 'left' | 'right'} />
         ))}
       </div>
 
       {/* Collection text block */}
-      <div className="flex flex-col items-center text-center py-16 md:py-24 px-4 md:px-16 lg:px-32 max-w-4xl mx-auto">
+      <div className="flex flex-col items-center text-center py-20 md:py-32 px-4 md:px-16 lg:px-32 max-w-4xl mx-auto">
         <h3 className="font-logo text-3xl md:text-4xl text-foreground mb-10 text-balance leading-tight">
           Puppet Riot FW25
         </h3>
@@ -276,10 +272,10 @@ export function ProjectsSection() {
         </p>
       </div>
 
-      {/* Scattered editorial images - second group */}
-      <div className="flex flex-col pt-8">
-        {editorialImagesAfter.map((img, i) => (
-          <EditorialImage key={img.src} {...img} index={i} groupOffset={editorialImagesBefore.length} />
+      {/* Second group of editorial images */}
+      <div className="flex flex-col">
+        {editorialImagesAfter.map((img) => (
+          <EditorialImage key={img.src} {...img} from={img.from as 'left' | 'right'} />
         ))}
       </div>
 
