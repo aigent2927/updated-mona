@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export function HeroSection() {
   return (
     <section
@@ -5,29 +7,18 @@ export function HeroSection() {
       className="relative w-full h-screen overflow-hidden bg-foreground"
       aria-label="Hero"
     >
-      {/* Video placeholder — replace src with your own video */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover opacity-80"
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-hidden="true"
-        poster="/images/project-01.jpg"
-      >
-        {/* Replace the src below with your video file path, e.g. /video/hero.mp4 */}
-        {/* <source src="/video/hero.mp4" type="video/mp4" /> */}
-      </video>
+      {/* Editorial hero image */}
+      <Image
+        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_03-Vqb1bfz56IBsZaGXI6g8RzQNQ9gtQn.jpg"
+        alt="Puppet Riot FW25 Editorial - Model wearing hand-knit sweater with tassel details and brocade skirt"
+        fill
+        className="object-cover"
+        priority
+        sizes="100vw"
+      />
 
-      {/* Overlay tint */}
-      <div className="absolute inset-0 bg-foreground/20" aria-hidden="true" />
-
-      {/* Bottom location mark */}
-      <div className="absolute bottom-10 left-8 md:left-16 right-8 md:right-16 flex items-end justify-end">
-        <span className="text-[10px] tracking-[0.22em] uppercase text-background/50">
-          Barcelona — Amsterdam
-        </span>
-      </div>
+      {/* Subtle overlay */}
+      <div className="absolute inset-0 bg-foreground/10" aria-hidden="true" />
     </section>
   )
 }
