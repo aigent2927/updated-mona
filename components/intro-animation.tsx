@@ -12,14 +12,6 @@ export function IntroAnimation() {
   const [phase, setPhase] = useState<Phase>('hold')
 
   useEffect(() => {
-    // Only play on true browser page load/refresh
-    const already = sessionStorage.getItem('mona_intro_played')
-    if (already) {
-      setPhase('done')
-      return
-    }
-    sessionStorage.setItem('mona_intro_played', '1')
-
     const revealTimer = setTimeout(() => setPhase('reveal'), 900)
     const doneTimer  = setTimeout(() => setPhase('done'),   1750)
 
