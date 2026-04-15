@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
-// Editorial images with varied positioning for organic layout
+// First group: 4 strongest images before the text block
 const editorialImages = [
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_28-Wm47vKHouboCZAdtYl1uJUyNCjXEhd.jpg',
@@ -24,23 +24,27 @@ const editorialImages = [
     marginBottom: 'mb-32',
   },
   {
-    src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_38-G5rZV83cOcwbZWEfzKa0PswptXWEEO.jpg',
-    alt: 'Two models in kitchen scene',
-    from: 'left',
-    offsetX: '18%',
-    width: 'w-[65%] md:w-[42%]',
-    aspect: 'aspect-[2/3]',
-    marginBottom: 'mb-16',
-  },
-  {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_06-ZoLWXp5zcncWvF2sBmO17NL8JIxl8n.jpg',
     alt: 'Overhead view of model reclined on patterned floor',
     from: 'right',
     offsetX: '0%',
     width: 'w-[85%] md:w-[55%]',
     aspect: 'aspect-[3/2]',
-    marginBottom: 'mb-28',
+    marginBottom: 'mb-20',
   },
+  {
+    src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_38-G5rZV83cOcwbZWEfzKa0PswptXWEEO.jpg',
+    alt: 'Two models in kitchen scene',
+    from: 'left',
+    offsetX: '18%',
+    width: 'w-[60%] md:w-[36%]',
+    aspect: 'aspect-[2/3]',
+    marginBottom: 'mb-16',
+  },
+]
+
+// Second group of editorial images after text
+const editorialImagesAfter = [
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_33-Sq8nyhm0Y4aBgZ7VcJxwZMvpTAjCTU.jpg',
     alt: 'Model seated in checkered outfit with puppet string',
@@ -59,10 +63,6 @@ const editorialImages = [
     aspect: 'aspect-[2/3]',
     marginBottom: 'mb-10',
   },
-]
-
-// Second group of editorial images after text
-const editorialImagesAfter = [
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_35-7E2MRMsF40I6Q7FIYcSxqHw5ioqxON.jpg',
     alt: 'Two models in checkered outfits on daybed',
@@ -155,6 +155,88 @@ const lookbookImages = [
   },
 ]
 
+// Credits distributed organically across the section
+// Each group: { lines: string[], align: 'left' | 'right', offsetX: string, insertAfterIndex: number, group: 'before' | 'after' }
+interface CreditGroup {
+  lines: string[]
+  align: 'left' | 'right'
+  offsetX: string
+  insertAfterIndex: number
+  group: 'before' | 'after'
+}
+
+const creditGroups: CreditGroup[] = [
+  // After image 0 in first group (left side, near the first image)
+  {
+    lines: [
+      'Designer: @01.mariona',
+      'Photo: Angely Quintero @annge.ly',
+      'Victor Alcalde @valcalde_',
+    ],
+    align: 'right',
+    offsetX: '10%',
+    insertAfterIndex: 0,
+    group: 'before',
+  },
+  // After image 2 in first group
+  {
+    lines: [
+      'Photo assistant: Albert Creus @creusalbert',
+      'Editing: Albert Creus @creusalbert',
+      'Video: Albert Creus @creusalbert',
+      'Joel Matilla @joelmatillagonzalez',
+    ],
+    align: 'left',
+    offsetX: '6%',
+    insertAfterIndex: 2,
+    group: 'before',
+  },
+  // After image 1 in second group
+  {
+    lines: [
+      'Muah: Júlia Masferrer @saturn.mua',
+      'Heidi Ruiz @muabyheidi',
+      'Assistant: Argentina Belchez @argentinabr',
+      'Carlos Conesa @carlosconesa_14',
+    ],
+    align: 'right',
+    offsetX: '8%',
+    insertAfterIndex: 1,
+    group: 'after',
+  },
+  // After image 3 in second group
+  {
+    lines: [
+      'Talents: Kiko Collado @iamkoki_xd',
+      'Diego Salazar @die_go_s.r',
+      'Yago Morales @yaagooo_',
+      'Manuel Guadagnuolo @earthlingcc',
+      'Omar Bouazzaoui @omarbouazzaouiii',
+      'Ainoa Baumann @bemydagger',
+      'Marcos Moreira @marx.os05',
+      'Antón Pérez @antonsantalla',
+    ],
+    align: 'left',
+    offsetX: '12%',
+    insertAfterIndex: 3,
+    group: 'after',
+  },
+  // After image 5 in second group
+  {
+    lines: [
+      'Location: Torre Modernista Abadal @torre.abadal',
+      'Tailoring: Tabata Molina @tabatamolina.atelier',
+      'Trinidad Molina @trinitymolina.m',
+      'Treydee @treydee._',
+      'Susana Puertas @susanapuertas.cuir',
+    ],
+    align: 'right',
+    offsetX: '5%',
+    insertAfterIndex: 5,
+    group: 'after',
+  },
+]
+
 interface EditorialImageProps {
   src: string
   alt: string
@@ -176,7 +258,6 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // One-way: only reveal, never hide again
           if (entry.isIntersecting) {
             setIsVisible(true)
             observer.unobserve(entry.target)
@@ -193,10 +274,7 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
     return () => observer.disconnect()
   }, [])
 
-  // Calculate the horizontal translation for enter/exit
   const translateX = from === 'left' ? '-100px' : '100px'
-
-  // Position styles based on direction
   const positionStyle = from === 'left'
     ? { marginLeft: offsetX, marginRight: 'auto' }
     : { marginRight: offsetX, marginLeft: 'auto' }
@@ -225,9 +303,72 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
   )
 }
 
-function LookbookImage({ src, alt }: { src: string; alt: string }) {
+function CreditBlock({ lines, align, offsetX }: { lines: string[]; align: 'left' | 'right'; offsetX: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const element = ref.current
+    if (!element) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '-5% 0px -5% 0px',
+      }
+    )
+
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+
+  const positionStyle = align === 'left'
+    ? { marginLeft: offsetX, marginRight: 'auto' }
+    : { marginRight: offsetX, marginLeft: 'auto' }
+
   return (
-    <div className="relative flex-1 min-w-0 aspect-[3/4] group" style={{ zIndex: 0 }}>
+    <div
+      ref={ref}
+      className="mb-16"
+      style={{
+        ...positionStyle,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(18px)',
+        transition: 'opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)',
+      }}
+    >
+      {lines.map((line, i) => (
+        <p
+          key={i}
+          className="font-sans text-[9px] tracking-[0.18em] uppercase text-muted-foreground/60 leading-[2.2]"
+          style={{ textAlign: align }}
+        >
+          {line}
+        </p>
+      ))}
+    </div>
+  )
+}
+
+function LookbookImage({ src, alt, onClick }: { src: string; alt: string; onClick: () => void }) {
+  return (
+    <div
+      className="relative flex-1 min-w-0 aspect-[3/4] group cursor-pointer"
+      style={{ zIndex: 0 }}
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      aria-label={`Open ${alt} fullscreen`}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick() }}
+    >
       <div
         className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-[1.07] group-hover:z-10"
         style={{ transformOrigin: 'center center' }}
@@ -244,7 +385,89 @@ function LookbookImage({ src, alt }: { src: string; alt: string }) {
   )
 }
 
+function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    document.addEventListener('keydown', handleKey)
+    return () => document.removeEventListener('keydown', handleKey)
+  }, [onClose])
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-background/95"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={alt}
+    >
+      {/* Close button */}
+      <button
+        className="absolute top-6 right-8 font-sans text-[9px] tracking-[0.3em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+        onClick={onClose}
+        aria-label="Close"
+      >
+        Close
+      </button>
+
+      {/* Image container — stop propagation so clicking the image doesn't close */}
+      <div
+        className="relative max-h-[88vh] max-w-[90vw] md:max-w-[70vw]"
+        onClick={(e) => e.stopPropagation()}
+        style={{ aspectRatio: '2/3' }}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-contain"
+          sizes="(max-width: 768px) 90vw, 70vw"
+        />
+      </div>
+    </div>
+  )
+}
+
+// Helper: interleave credit blocks into an image list
+function renderGroupWithCredits(
+  images: typeof editorialImages,
+  credits: CreditGroup[],
+  group: 'before' | 'after'
+) {
+  const groupCredits = credits.filter((c) => c.group === group)
+  const elements: React.ReactNode[] = []
+
+  images.forEach((img, i) => {
+    elements.push(
+      <EditorialImage key={img.src} {...img} from={img.from as 'left' | 'right'} />
+    )
+    const matchingCredits = groupCredits.filter((c) => c.insertAfterIndex === i)
+    matchingCredits.forEach((credit, ci) => {
+      elements.push(
+        <CreditBlock
+          key={`credit-${group}-${i}-${ci}`}
+          lines={credit.lines}
+          align={credit.align}
+          offsetX={credit.offsetX}
+        />
+      )
+    })
+  })
+
+  return elements
+}
+
 export function ProjectsSection() {
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
+  const [lightboxAlt, setLightboxAlt] = useState<string>('')
+
+  const openLightbox = (src: string, alt: string) => {
+    setLightboxSrc(src)
+    setLightboxAlt(alt)
+  }
+  const closeLightbox = () => setLightboxSrc(null)
+
   return (
     <section
       id="projects"
@@ -263,11 +486,9 @@ export function ProjectsSection() {
         </span>
       </div>
 
-      {/* First group of editorial images */}
+      {/* First group: 4 images with scattered credits */}
       <div className="flex flex-col">
-        {editorialImages.map((img) => (
-          <EditorialImage key={img.src} {...img} from={img.from as 'left' | 'right'} />
-        ))}
+        {renderGroupWithCredits(editorialImages, creditGroups, 'before')}
       </div>
 
       {/* Collection text block */}
@@ -280,11 +501,9 @@ export function ProjectsSection() {
         </p>
       </div>
 
-      {/* Second group of editorial images */}
+      {/* Second group: remaining images with scattered credits */}
       <div className="flex flex-col">
-        {editorialImagesAfter.map((img) => (
-          <EditorialImage key={img.src} {...img} from={img.from as 'left' | 'right'} />
-        ))}
+        {renderGroupWithCredits(editorialImagesAfter, creditGroups, 'after')}
       </div>
 
       {/* Lookbook section */}
@@ -294,10 +513,20 @@ export function ProjectsSection() {
         </h3>
         <div className="flex w-full overflow-visible">
           {lookbookImages.map((img) => (
-            <LookbookImage key={img.src} {...img} />
+            <LookbookImage
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              onClick={() => openLightbox(img.src, img.alt)}
+            />
           ))}
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightboxSrc && (
+        <Lightbox src={lightboxSrc} alt={lightboxAlt} onClose={closeLightbox} />
+      )}
     </section>
   )
 }
