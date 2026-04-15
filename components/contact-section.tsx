@@ -7,9 +7,25 @@ export function ContactSection() {
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [fieldErrors, setFieldErrors] = useState({ name: '', email: '', message: '' })
+
+  const validate = () => {
+    const errors = { name: '', email: '', message: '' }
+    if (!formData.name.trim()) errors.name = 'Name is required'
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Please enter a valid email'
+    }
+    if (!formData.message.trim()) errors.message = 'Message is required'
+    return errors
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    const errors = validate()
+    setFieldErrors(errors)
+    if (errors.name || errors.email || errors.message) return
     setLoading(true)
     setError(false)
 
@@ -104,26 +120,29 @@ export function ContactSection() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8">
+              <form onSubmit={handleSubmit} className="space-y-8" noValidate>
                 <div>
                   <label
                     htmlFor="name"
                     className="block text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-2"
                   >
-                    Name
+                    Name <span className="text-red-400/70">*</span>
                   </label>
                   <input
                     id="name"
                     type="text"
-                    required
                     autoComplete="name"
                     value={formData.name}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setFormData((p) => ({ ...p, name: e.target.value }))
-                    }
+                      if (fieldErrors.name) setFieldErrors((p) => ({ ...p, name: '' }))
+                    }}
                     className="w-full bg-transparent border-b border-border text-foreground text-sm font-light py-2 focus:outline-none focus:border-foreground transition-colors duration-200 placeholder:text-muted-foreground/40"
                     placeholder="Your name"
                   />
+                  {fieldErrors.name && (
+                    <p className="mt-1.5 text-[10px] tracking-[0.12em] text-red-400/80">{fieldErrors.name}</p>
+                  )}
                 </div>
 
                 <div>
@@ -131,20 +150,23 @@ export function ContactSection() {
                     htmlFor="email"
                     className="block text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-2"
                   >
-                    Email
+                    Email <span className="text-red-400/70">*</span>
                   </label>
                   <input
                     id="email"
                     type="email"
-                    required
                     autoComplete="email"
                     value={formData.email}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setFormData((p) => ({ ...p, email: e.target.value }))
-                    }
+                      if (fieldErrors.email) setFieldErrors((p) => ({ ...p, email: '' }))
+                    }}
                     className="w-full bg-transparent border-b border-border text-foreground text-sm font-light py-2 focus:outline-none focus:border-foreground transition-colors duration-200 placeholder:text-muted-foreground/40"
                     placeholder="your@email.com"
                   />
+                  {fieldErrors.email && (
+                    <p className="mt-1.5 text-[10px] tracking-[0.12em] text-red-400/80">{fieldErrors.email}</p>
+                  )}
                 </div>
 
                 <div>
@@ -152,19 +174,22 @@ export function ContactSection() {
                     htmlFor="message"
                     className="block text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-2"
                   >
-                    Message
+                    Message <span className="text-red-400/70">*</span>
                   </label>
                   <textarea
                     id="message"
-                    required
                     rows={4}
                     value={formData.message}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setFormData((p) => ({ ...p, message: e.target.value }))
-                    }
+                      if (fieldErrors.message) setFieldErrors((p) => ({ ...p, message: '' }))
+                    }}
                     className="w-full bg-transparent border-b border-border text-foreground text-sm font-light py-2 focus:outline-none focus:border-foreground transition-colors duration-200 placeholder:text-muted-foreground/40 resize-none"
                     placeholder="What are you working on?"
                   />
+                  {fieldErrors.message && (
+                    <p className="mt-1.5 text-[10px] tracking-[0.12em] text-red-400/80">{fieldErrors.message}</p>
+                  )}
                 </div>
 
                 {error && (
