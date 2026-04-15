@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 const navLinks = [
   { label: 'home', href: '#home' },
@@ -10,16 +10,7 @@ const navLinks = [
 ]
 
 export function NavBar() {
-  const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40)
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   const handleNav = (href: string) => {
     setMenuOpen(false)
@@ -31,11 +22,7 @@ export function NavBar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-background/95 backdrop-blur-sm border-b border-border'
-          : 'bg-transparent'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border/50"
     >
       <nav
         className="flex flex-col items-center px-6 md:px-12 pt-5 pb-4"
