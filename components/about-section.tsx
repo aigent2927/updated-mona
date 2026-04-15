@@ -7,7 +7,7 @@ export function AboutSection() {
     >
       <div className="max-w-6xl mx-auto">
         {/* Section label */}
-        <p className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mb-20">
+        <p className="text-[12px] tracking-[0.25em] uppercase text-muted-foreground mb-20">
           About
         </p>
 

@@ -413,14 +413,14 @@ export function ProjectsSection() {
       className="px-6 md:px-12 pt-28 pb-12"
       aria-labelledby="projects-heading"
     >
-      <div className="flex items-baseline justify-between mb-20 md:mb-28">
+      <div className="flex items-baseline justify-center mb-20 md:mb-28">
         <h2
           id="projects-heading"
           className="text-[12px] tracking-[0.25em] uppercase text-muted-foreground"
         >
-          Projects
+          Projects — Selected Work
         </h2>
-        <span className="text-[12px] tracking-[0.2em] uppercase text-muted-foreground/50">
+        <span className="hidden text-[12px] tracking-[0.2em] uppercase text-muted-foreground/50">
           Selected Work
         </span>
       </div>
@@ -488,7 +488,7 @@ export function ProjectsSection() {
 
       </div>
 
-      {/* ── Collection text block ────────────────────────────────────────── */}
+      {/* ── Collection text block ──────────────────���─────────────────────── */}
       <div className="flex flex-col items-center text-center py-20 md:py-32 px-4 md:px-16 lg:px-32 max-w-4xl mx-auto">
         <h3 className="font-logo text-3xl md:text-4xl text-foreground mb-10 text-balance leading-tight">
           Puppet Riot FW25
@@ -593,6 +593,14 @@ export function ProjectsSection() {
               onClick={() => openLightbox(img.src, img.alt)}
             />
           ))}
+        </div>
+
+        {/* More to come */}
+        <div className="flex flex-col items-center mt-16">
+          <hr className="w-8 border-t border-border mb-8" />
+          <p className="font-logo text-3xl md:text-4xl text-muted-foreground/60 font-light">
+            More to come
+          </p>
         </div>
       </div>
 
