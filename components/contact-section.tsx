@@ -37,26 +37,26 @@ export function ContactSection() {
             <ul className="space-y-6">
               <li>
                 <p className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
-                  Email
-                </p>
-                <a
-                  href="mailto:studio@mona.com"
-                  className="text-sm font-light text-foreground hover:text-muted-foreground transition-colors duration-200"
-                >
-                  studio@mona.com
-                </a>
-              </li>
-              <li>
-                <p className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
                   Instagram
                 </p>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/01.mariona/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm font-light text-foreground hover:text-muted-foreground transition-colors duration-200"
                 >
-                  @mona
+                  @01.mariona
+                </a>
+              </li>
+              <li>
+                <p className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
+                  Email
+                </p>
+                <a
+                  href="mailto:requestsmona@gmail.com"
+                  className="text-sm font-light text-foreground hover:text-muted-foreground transition-colors duration-200"
+                >
+                  requestsmona@gmail.com
                 </a>
               </li>
               <li>
@@ -64,12 +64,12 @@ export function ContactSection() {
                   LinkedIn
                 </p>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/mariona-ramos-91a637155/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm font-light text-foreground hover:text-muted-foreground transition-colors duration-200"
                 >
-                  Mona
+                  Mariona Ramos
                 </a>
               </li>
             </ul>

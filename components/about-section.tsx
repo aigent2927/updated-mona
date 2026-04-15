@@ -37,7 +37,7 @@ export function AboutSection() {
               Fashion designer first,<br />
               creative pattern maker after.
             </p>
-            <p className="text-base font-light text-muted-foreground leading-relaxed max-w-lg text-balance">
+            <p className="text-sm font-light text-muted-foreground leading-relaxed max-w-lg text-balance">
               Observing a contemporary landscape that feels increasingly neutral,
               functional, and quiet, the work responds through contrast: through
               visual strength, ornament, and the belief that fashion should move,
