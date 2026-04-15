@@ -84,7 +84,7 @@ export function ContactSection() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-8">
                 <div>
                   <label
                     htmlFor="name"
