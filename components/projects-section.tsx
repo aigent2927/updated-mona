@@ -396,8 +396,14 @@ function Lightbox({
 
         {/* Rotated look label — lower-left of image */}
         <span
-          className="absolute left-0 bottom-8 text-[12px] tracking-[0.25em] uppercase text-white/80 font-sans pointer-events-none select-none"
-          style={{ transform: 'rotate(-90deg)', transformOrigin: 'left bottom', whiteSpace: 'nowrap', left: '-2rem' }}
+          className="absolute text-[12px] tracking-[0.25em] uppercase text-white/80 font-sans pointer-events-none select-none"
+          style={{
+            transform: 'rotate(-90deg)',
+            transformOrigin: 'left bottom',
+            whiteSpace: 'nowrap',
+            left: '0.35rem',
+            bottom: '0',
+          }}
           aria-hidden="true"
         >
           Look {index + 1}
