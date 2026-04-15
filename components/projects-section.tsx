@@ -176,8 +176,11 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Bidirectional: true when visible, false when not
-          setIsVisible(entry.isIntersecting)
+          // One-way: only reveal, never hide again
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+            observer.unobserve(entry.target)
+          }
         })
       },
       {
@@ -224,14 +227,19 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
 
 function LookbookImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="relative flex-1 min-w-0 aspect-[3/4] overflow-hidden transition-all duration-500 ease-out hover:flex-[1.3]">
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        className="object-cover"
-        sizes="(max-width: 768px) 50vw, 12.5vw"
-      />
+    <div className="relative flex-1 min-w-0 aspect-[3/4] group" style={{ zIndex: 0 }}>
+      <div
+        className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-[1.07] group-hover:z-10"
+        style={{ transformOrigin: 'center center' }}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 50vw, 12.5vw"
+        />
+      </div>
     </div>
   )
 }
@@ -284,7 +292,7 @@ export function ProjectsSection() {
         <h3 className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground mb-12 text-center">
           Lookbook
         </h3>
-        <div className="flex w-full">
+        <div className="flex w-full overflow-visible">
           {lookbookImages.map((img) => (
             <LookbookImage key={img.src} {...img} />
           ))}

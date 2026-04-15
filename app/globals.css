@@ -116,6 +116,21 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  50% {
+    transform: translateY(5px);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+}
+
+@theme inline {
+  --animate-bounce-subtle: bounce-subtle 2s ease-in-out infinite;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
