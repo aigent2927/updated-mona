@@ -415,6 +415,32 @@ function Lightbox({
 
 export function ProjectsSection() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const sectionRef = useRef<HTMLElement>(null)
+  const [translateY, setTranslateY] = useState(40)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = sectionRef.current
+      if (!section) return
+      const rect = section.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+      // Only animate during the entry zone: from when section top enters viewport to when it reaches 60% up
+      const entryStart = windowHeight
+      const entryEnd = windowHeight * 0.4
+      const sectionTop = rect.top
+      if (sectionTop >= entryStart) {
+        setTranslateY(40)
+      } else if (sectionTop <= entryEnd) {
+        setTranslateY(0)
+      } else {
+        const progress = 1 - (sectionTop - entryEnd) / (entryStart - entryEnd)
+        setTranslateY(Math.round(40 * (1 - progress)))
+      }
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const openLightbox = (_src: string, _alt: string) => {
     const idx = lookbookImages.findIndex((img) => img.src === _src)
@@ -426,8 +452,10 @@ export function ProjectsSection() {
 
   return (
     <section
+      ref={sectionRef}
       id="projects"
-      className="relative z-10 px-6 md:px-12 pt-28 pb-12 -mt-8"
+      className="relative z-10 bg-background px-6 md:px-12 pt-28 pb-12"
+      style={{ transform: `translateY(${translateY}px)`, transition: 'transform 0.05s linear', marginTop: '-40px' }}
       aria-labelledby="projects-heading"
     >
       <div className="flex items-baseline justify-center mb-20 md:mb-28">
