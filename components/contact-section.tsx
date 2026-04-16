@@ -216,9 +216,23 @@ export function ContactSection() {
       {/* Footer */}
       <div className="mt-28 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-8 border-t border-border">
         <span className="font-logo text-lg text-foreground">Mona</span>
-        <span className="text-[10px] tracking-[0.16em] uppercase text-muted-foreground/40">
-          © {new Date().getFullYear()}
-        </span>
+        <div className="flex items-center gap-6">
+          <a
+            href="/privacy"
+            className="text-[10px] tracking-[0.16em] uppercase text-muted-foreground/60 hover:text-muted-foreground transition-colors duration-200"
+          >
+            Privacy
+          </a>
+          <a
+            href="/cookies"
+            className="text-[10px] tracking-[0.16em] uppercase text-muted-foreground/60 hover:text-muted-foreground transition-colors duration-200"
+          >
+            Cookies
+          </a>
+          <span className="text-[10px] tracking-[0.16em] uppercase text-muted-foreground/40">
+            © {new Date().getFullYear()}
+          </span>
+        </div>
       </div>
     </section>
   )
