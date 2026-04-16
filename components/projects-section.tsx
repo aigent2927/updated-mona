@@ -285,7 +285,7 @@ function CreditBlock({
 function LookbookImage({ src, alt, onClick }: { src: string; alt: string; onClick: () => void }) {
   return (
     <div
-      className="relative aspect-[3/4] group cursor-pointer"
+      className="relative flex-1 min-w-0 aspect-[3/4] group cursor-pointer"
       style={{ zIndex: 0 }}
       onClick={onClick}
       role="button"
