@@ -416,30 +416,43 @@ function Lightbox({
 export function ProjectsSection() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
-  const [translateY, setTranslateY] = useState(40)
+  const [translateY, setTranslateY] = useState(100)
+  const rafRef = useRef<number | null>(null)
+  const currentY = useRef(100)
 
   useEffect(() => {
-    const handleScroll = () => {
+    const RISE = 100
+
+    const getTarget = () => {
       const section = sectionRef.current
-      if (!section) return
+      if (!section) return RISE
       const rect = section.getBoundingClientRect()
       const windowHeight = window.innerHeight
-      // Only animate during the entry zone: from when section top enters viewport to when it reaches 60% up
-      const entryStart = windowHeight
-      const entryEnd = windowHeight * 0.4
+      // Animate over a wide entry zone: section top goes from 110% vh down to 30% vh
+      const entryStart = windowHeight * 1.1
+      const entryEnd = windowHeight * 0.3
       const sectionTop = rect.top
-      if (sectionTop >= entryStart) {
-        setTranslateY(40)
-      } else if (sectionTop <= entryEnd) {
-        setTranslateY(0)
-      } else {
-        const progress = 1 - (sectionTop - entryEnd) / (entryStart - entryEnd)
-        setTranslateY(Math.round(40 * (1 - progress)))
-      }
+      if (sectionTop >= entryStart) return RISE
+      if (sectionTop <= entryEnd) return 0
+      // Ease-out cubic
+      const raw = (sectionTop - entryEnd) / (entryStart - entryEnd)
+      const eased = raw * raw * raw
+      return RISE * eased
     }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
+
+    const animate = () => {
+      const target = getTarget()
+      // Smooth lerp: 8% per frame → fluid ease-out feel
+      currentY.current += (target - currentY.current) * 0.08
+      const snapped = Math.abs(currentY.current - target) < 0.1 ? target : currentY.current
+      setTranslateY(parseFloat(snapped.toFixed(2)))
+      rafRef.current = requestAnimationFrame(animate)
+    }
+
+    rafRef.current = requestAnimationFrame(animate)
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
   }, [])
 
   const openLightbox = (_src: string, _alt: string) => {
@@ -455,7 +468,7 @@ export function ProjectsSection() {
       ref={sectionRef}
       id="projects"
       className="relative z-10 bg-background px-6 md:px-12 pt-28 pb-12"
-      style={{ transform: `translateY(${translateY}px)`, transition: 'transform 0.05s linear', marginTop: '-40px' }}
+      style={{ transform: `translateY(${translateY}px)`, marginTop: '-100px' }}
       aria-labelledby="projects-heading"
     >
       <div className="flex items-baseline justify-center mb-20 md:mb-28">
