@@ -72,7 +72,7 @@ export function ContactSection() {
 
             <ul className="space-y-6">
               <li>
-                <p className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
+                <p className="text-[12px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
                   Instagram
                 </p>
                 <a
@@ -85,7 +85,7 @@ export function ContactSection() {
                 </a>
               </li>
               <li>
-                <p className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
+                <p className="text-[12px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
                   Email
                 </p>
                 <a
@@ -98,7 +98,7 @@ export function ContactSection() {
                 </a>
               </li>
               <li>
-                <p className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
+                <p className="text-[12px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
                   LinkedIn
                 </p>
                 <a
@@ -126,7 +126,7 @@ export function ContactSection() {
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-2"
+                    className="block text-[12px] tracking-[0.22em] uppercase text-muted-foreground mb-2"
                   >
                     Name <span className="text-red-400/70">*</span>
                   </label>
@@ -150,7 +150,7 @@ export function ContactSection() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-2"
+                    className="block text-[12px] tracking-[0.22em] uppercase text-muted-foreground mb-2"
                   >
                     Email <span className="text-red-400/70">*</span>
                   </label>
@@ -174,7 +174,7 @@ export function ContactSection() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-2"
+                    className="block text-[12px] tracking-[0.22em] uppercase text-muted-foreground mb-2"
                   >
                     Message <span className="text-red-400/70">*</span>
                   </label>
@@ -203,7 +203,7 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="text-[10px] tracking-[0.22em] uppercase text-foreground border-b border-foreground pb-0.5 hover:text-muted-foreground hover:border-muted-foreground transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="text-[12px] tracking-[0.22em] uppercase text-foreground border-b border-foreground pb-0.5 hover:text-muted-foreground hover:border-muted-foreground transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   {loading ? 'Sending...' : 'Send'}
                 </button>

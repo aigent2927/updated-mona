@@ -50,7 +50,7 @@ export function AboutSection() {
 
               {/* Interned */}
               <div>
-                <p className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-5">
+                <p className="text-[12px] tracking-[0.22em] uppercase text-muted-foreground mb-5">
                   Interned
                 </p>
                 <ul className="space-y-4">
@@ -75,7 +75,7 @@ export function AboutSection() {
 
               {/* Recognition */}
               <div>
-                <p className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-5">
+                <p className="text-[12px] tracking-[0.22em] uppercase text-muted-foreground mb-5">
                   Recognition
                 </p>
                 <ul className="space-y-4">
