@@ -215,7 +215,7 @@ export function ContactSection() {
 
       {/* Footer */}
       <div className="mt-28 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-8 border-t border-border">
-        <span className="font-logo text-lg text-foreground/40">Mona</span>
+        <span className="font-logo text-lg text-foreground">Mona</span>
         <span className="text-[10px] tracking-[0.16em] uppercase text-muted-foreground/40">
           © {new Date().getFullYear()}
         </span>
