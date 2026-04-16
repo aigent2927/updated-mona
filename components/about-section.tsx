@@ -50,7 +50,7 @@ export function AboutSection() {
 
               {/* Interned */}
               <div>
-                <p className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-5">
+                <p className="text-[12px] tracking-[0.22em] uppercase text-muted-foreground mb-5">
                   Interned
                 </p>
                 <ul className="space-y-4">
@@ -75,12 +75,12 @@ export function AboutSection() {
 
               {/* Recognition */}
               <div>
-                <p className="text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-5">
+                <p className="text-[12px] tracking-[0.22em] uppercase text-muted-foreground mb-5">
                   Recognition
                 </p>
                 <ul className="space-y-4">
                   <li>
-                    <p className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground/60 mb-0.5">
+                    <p className="text-[12px] tracking-[0.14em] uppercase text-muted-foreground/60 mb-0.5">
                       Featured in
                     </p>
                     <p className="text-sm font-light text-foreground">
@@ -88,13 +88,13 @@ export function AboutSection() {
                     </p>
                   </li>
                   <li>
-                    <p className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground/60 mb-0.5">
+                    <p className="text-[12px] tracking-[0.14em] uppercase text-muted-foreground/60 mb-0.5">
                       Finalist
                     </p>
                     <p className="text-sm font-light text-foreground leading-snug">
                       Runhua Award Contest 2025
                     </p>
-                    <p className="text-xs tracking-[0.06em] text-muted-foreground mt-1 leading-relaxed">
+                    <p className="text-[12px] tracking-[0.06em] text-muted-foreground mt-1 leading-relaxed">
                       Jiangxi Institute of Fashion Technology (JIFT),<br />
                       Nanchang, China
                     </p>

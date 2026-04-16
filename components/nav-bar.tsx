@@ -25,7 +25,7 @@ export function NavBar() {
       className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border/50"
     >
       <nav
-        className="flex flex-col items-center px-6 md:px-12 pt-5 pb-4"
+        className="flex flex-col items-center px-6 md:px-12 pt-4 pb-3 md:pt-5 md:pb-4"
         aria-label="Main navigation"
       >
         {/* Centered Logo */}
@@ -35,7 +35,7 @@ export function NavBar() {
             e.preventDefault()
             handleNav('#home')
           }}
-          className="font-logo text-2xl md:text-3xl text-foreground tracking-wide hover:opacity-70 transition-opacity duration-300 mb-3"
+          className="font-logo text-xl md:text-3xl text-foreground tracking-wide hover:opacity-70 transition-opacity duration-300 mb-2 md:mb-3"
           aria-label="Mona — Home"
         >
           Mona
@@ -51,7 +51,7 @@ export function NavBar() {
                   e.preventDefault()
                   handleNav(link.href)
                 }}
-                className="relative font-sans text-[13px] tracking-[0.12em] text-foreground/70 hover:text-foreground transition-colors duration-300 group"
+                className="relative font-sans text-[12px] tracking-[0.12em] text-foreground/70 hover:text-foreground transition-colors duration-300 group"
               >
                 {link.label}
                 <span className="absolute left-0 -bottom-1 w-full h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -88,7 +88,7 @@ export function NavBar() {
       {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-500 bg-background border-b border-border ${
-          menuOpen ? 'max-h-64 py-6' : 'max-h-0'
+          menuOpen ? 'max-h-64 pt-3 pb-6' : 'max-h-0'
         }`}
       >
         <ul className="flex flex-col items-center gap-6" role="list">
@@ -100,7 +100,7 @@ export function NavBar() {
                   e.preventDefault()
                   handleNav(link.href)
                 }}
-                className="relative font-sans text-[13px] tracking-[0.12em] text-foreground/70 hover:text-foreground transition-colors duration-300 group"
+                className="relative font-sans text-[12px] tracking-[0.12em] text-foreground/70 hover:text-foreground transition-colors duration-300 group"
               >
                 {link.label}
                 <span className="absolute left-0 -bottom-1 w-full h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />

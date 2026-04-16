@@ -7,12 +7,21 @@ export function HeroSection() {
       className="relative w-full h-screen overflow-hidden bg-foreground"
       aria-label="Hero"
     >
-      {/* Editorial hero image */}
+      {/* Mobile hero image */}
+      <Image
+        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_02-l7UXpVxyKRQgo5On8YxBrwdPulbjXj.jpg"
+        alt="Puppet Riot FW25 Editorial - Model in red knit sweater and brocade skirt"
+        fill
+        className="object-cover object-[center_20%] md:hidden"
+        priority
+        sizes="100vw"
+      />
+      {/* Desktop hero image */}
       <Image
         src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_03-Vqb1bfz56IBsZaGXI6g8RzQNQ9gtQn.jpg"
         alt="Puppet Riot FW25 Editorial - Model wearing hand-knit sweater with tassel details and brocade skirt"
         fill
-        className="object-cover object-[center_28%]"
+        className="object-cover object-[center_28%] hidden md:block"
         priority
         sizes="100vw"
       />
@@ -25,7 +34,7 @@ export function HeroSection() {
         className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
         aria-hidden="true"
       >
-        <span className="text-[9px] tracking-[0.3em] uppercase text-white/90 font-sans font-normal">
+        <span className="text-[12px] tracking-[0.3em] uppercase text-white/90 font-sans font-bold">
           scroll
         </span>
         <svg
@@ -40,7 +49,7 @@ export function HeroSection() {
           <path
             d="M5 0L5 14M5 14L1 10M5 14L9 10"
             stroke="currentColor"
-            strokeWidth="1.7"
+            strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
