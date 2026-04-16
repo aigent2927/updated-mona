@@ -427,7 +427,7 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="relative z-10 px-6 md:px-12 pt-28 pb-12 -mt-8"
+      className="relative z-10 bg-background px-6 md:px-12 pt-28 pb-12 -mt-24"
       aria-labelledby="projects-heading"
     >
       <div className="flex items-baseline justify-center mb-20 md:mb-28">
