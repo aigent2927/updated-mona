@@ -38,7 +38,7 @@ export function NavBar() {
           Mona
         </a>
         <button
-          className="absolute right-6 flex flex-col gap-[4px] p-2"
+          className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-[4px] p-2"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
