@@ -51,7 +51,7 @@ export function NavBar() {
                   e.preventDefault()
                   handleNav(link.href)
                 }}
-                className="relative font-sans text-[13px] tracking-[0.12em] text-foreground/70 hover:text-foreground transition-colors duration-300 group"
+                className="relative font-sans text-[12px] tracking-[0.12em] text-foreground/70 hover:text-foreground transition-colors duration-300 group"
               >
                 {link.label}
                 <span className="absolute left-0 -bottom-1 w-full h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -100,7 +100,7 @@ export function NavBar() {
                   e.preventDefault()
                   handleNav(link.href)
                 }}
-                className="relative font-sans text-[13px] tracking-[0.12em] text-foreground/70 hover:text-foreground transition-colors duration-300 group"
+                className="relative font-sans text-[12px] tracking-[0.12em] text-foreground/70 hover:text-foreground transition-colors duration-300 group"
               >
                 {link.label}
                 <span className="absolute left-0 -bottom-1 w-full h-px bg-foreground scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
