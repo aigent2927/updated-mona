@@ -416,35 +416,38 @@ function Lightbox({
 export function ProjectsSection() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
-  const [translateY, setTranslateY] = useState(60)
+  const [translateY, setTranslateY] = useState(0)
   const rafRef = useRef<number | null>(null)
-  const currentY = useRef(60)
-  const targetY = useRef(60)
+  const currentY = useRef(0)
+  const targetY = useRef(0)
 
   useEffect(() => {
     const RISE = 60
 
     const computeTarget = () => {
       const section = sectionRef.current
-      if (!section) return RISE
+      if (!section) return 0
       const rect = section.getBoundingClientRect()
       const vh = window.innerHeight
-      // Wide entry zone: section top goes from 120% vh down to 20% vh
-      const entryStart = vh * 1.2
-      const entryEnd = vh * 0.2
+      // Entry zone: section top goes from 100% vh (just entering) down to 40% vh (well into view)
+      const entryStart = vh
+      const entryEnd = vh * 0.4
       const sectionTop = rect.top
-      if (sectionTop >= entryStart) return RISE
-      if (sectionTop <= entryEnd) return 0
-      // Ease-out cubic for a natural deceleration
-      const t = (sectionTop - entryEnd) / (entryStart - entryEnd)
-      return RISE * t * t * t
+      // Before entering viewport: no transform
+      if (sectionTop >= entryStart) return 0
+      // Fully in view: max upward rise
+      if (sectionTop <= entryEnd) return -RISE
+      // Ease-out cubic for smooth deceleration
+      const progress = 1 - (sectionTop - entryEnd) / (entryStart - entryEnd)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      return -RISE * eased
     }
 
     const tick = () => {
       targetY.current = computeTarget()
-      // Lerp at 10% per frame — smooth but responsive
-      currentY.current += (targetY.current - currentY.current) * 0.1
-      const snapped = Math.abs(currentY.current - targetY.current) < 0.05
+      // Lerp at 12% per frame — smooth but responsive
+      currentY.current += (targetY.current - currentY.current) * 0.12
+      const snapped = Math.abs(currentY.current - targetY.current) < 0.1
         ? targetY.current
         : currentY.current
       setTranslateY(parseFloat(snapped.toFixed(2)))
@@ -470,7 +473,7 @@ export function ProjectsSection() {
       ref={sectionRef}
       id="projects"
       className="relative z-10 bg-background px-6 md:px-12 pt-28 pb-12"
-      style={{ transform: `translateY(${translateY}px)`, marginTop: '-60px' }}
+      style={{ transform: `translateY(${translateY}px)` }}
       aria-labelledby="projects-heading"
     >
       <div className="flex items-baseline justify-center mb-20 md:mb-28">
