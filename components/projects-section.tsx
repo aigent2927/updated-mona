@@ -425,19 +425,19 @@ export function ProjectsSection() {
     const RISE = 60
 
     const computeTarget = () => {
+      // If user hasn't scrolled at all, never apply any transform
+      if (window.scrollY <= 0) return 0
       const section = sectionRef.current
       if (!section) return 0
       const rect = section.getBoundingClientRect()
       const vh = window.innerHeight
-      // Entry zone: section top goes from 100% vh (just entering) down to 40% vh (well into view)
-      const entryStart = vh
-      const entryEnd = vh * 0.4
+      // Entry zone: from when section top is 20px below viewport bottom down to 50% of vh
+      const entryStart = vh - 20
+      const entryEnd = vh * 0.5
       const sectionTop = rect.top
-      // Before entering viewport: no transform
       if (sectionTop >= entryStart) return 0
-      // Fully in view: max upward rise
       if (sectionTop <= entryEnd) return -RISE
-      // Ease-out cubic for smooth deceleration
+      // Ease-out cubic
       const progress = 1 - (sectionTop - entryEnd) / (entryStart - entryEnd)
       const eased = 1 - Math.pow(1 - progress, 3)
       return -RISE * eased
@@ -445,9 +445,8 @@ export function ProjectsSection() {
 
     const tick = () => {
       targetY.current = computeTarget()
-      // Lerp at 12% per frame — smooth but responsive
-      currentY.current += (targetY.current - currentY.current) * 0.12
-      const snapped = Math.abs(currentY.current - targetY.current) < 0.1
+      currentY.current += (targetY.current - currentY.current) * 0.1
+      const snapped = Math.abs(currentY.current - targetY.current) < 0.05
         ? targetY.current
         : currentY.current
       setTranslateY(parseFloat(snapped.toFixed(2)))
