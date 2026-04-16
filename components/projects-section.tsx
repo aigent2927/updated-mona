@@ -184,9 +184,17 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
   }, [])
 
   const translateX = from === 'left' ? '-100px' : '100px'
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+  const resolvedOffset = isMobile ? '0px' : offsetX
   const positionStyle = from === 'left'
-    ? { marginLeft: offsetX, marginRight: 'auto' }
-    : { marginRight: offsetX, marginLeft: 'auto' }
+    ? { marginLeft: resolvedOffset, marginRight: 'auto' }
+    : { marginRight: resolvedOffset, marginLeft: 'auto' }
 
   return (
     <div
@@ -277,7 +285,7 @@ function CreditBlock({
 function LookbookImage({ src, alt, onClick }: { src: string; alt: string; onClick: () => void }) {
   return (
     <div
-      className="relative flex-1 min-w-0 aspect-[3/4] group cursor-pointer"
+      className="relative aspect-[3/4] group cursor-pointer"
       style={{ zIndex: 0 }}
       onClick={onClick}
       role="button"
@@ -286,7 +294,7 @@ function LookbookImage({ src, alt, onClick }: { src: string; alt: string; onClic
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick() }}
     >
       <div
-        className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-[1.07] group-hover:z-10"
+        className="absolute inset-0 [@media(hover:hover)]:transition-transform [@media(hover:hover)]:duration-500 [@media(hover:hover)]:ease-out [@media(hover:hover)]:group-hover:scale-[1.07] [@media(hover:hover)]:group-hover:z-10"
         style={{ transformOrigin: 'center center' }}
       >
         <Image
@@ -428,7 +436,7 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="px-6 md:px-12 pt-20 pb-12"
+      className="px-6 md:px-12 pt-20 pb-12 overflow-x-hidden"
       aria-labelledby="projects-heading"
     >
       <div className="flex items-baseline justify-center mb-20 md:mb-28">
@@ -602,7 +610,18 @@ export function ProjectsSection() {
         <h3 className="text-[12px] tracking-[0.25em] uppercase text-muted-foreground mb-12 text-center">
           Lookbook
         </h3>
-        <div className="flex w-full overflow-visible">
+        {/* Mobile: 2×4 grid, no gaps. Desktop: single row flex. */}
+        <div className="grid grid-cols-2 gap-0 md:hidden">
+          {lookbookImages.map((img) => (
+            <LookbookImage
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              onClick={() => openLightbox(img.src, img.alt)}
+            />
+          ))}
+        </div>
+        <div className="hidden md:flex w-full overflow-visible">
           {lookbookImages.map((img) => (
             <LookbookImage
               key={img.src}
