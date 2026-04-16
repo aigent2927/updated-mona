@@ -384,22 +384,14 @@ function Lightbox({
 
       {/* Image — natural size, max constrained to viewport */}
       <div
-        className="relative"
+        className="relative max-h-[72vh] max-w-[78vw] md:max-h-[88vh] md:max-w-[85vw]"
         onClick={(e) => e.stopPropagation()}
-        style={{ maxHeight: '88vh', maxWidth: '85vw' }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={src}
           alt={alt}
-          style={{
-            display: 'block',
-            maxHeight: '88vh',
-            maxWidth: '85vw',
-            width: 'auto',
-            height: 'auto',
-            objectFit: 'contain',
-          }}
+          className="block w-auto h-auto max-h-[72vh] max-w-[78vw] md:max-h-[88vh] md:max-w-[85vw] object-contain"
         />
 
         {/* Rotated look label — lower-left of image */}
