@@ -156,9 +156,22 @@ interface EditorialImageProps {
   marginBottom: string
 }
 
+// Single shared mobile detector — one resize listener for all EditorialImage instances
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check, { passive: true })
+    return () => window.removeEventListener('resize', check)
+  }, [])
+  return isMobile
+}
+
 function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }: EditorialImageProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     const element = ref.current
@@ -174,8 +187,8 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
         })
       },
       {
-        threshold: 0.15,
-        rootMargin: '-8% 0px -8% 0px',
+        threshold: 0.1,
+        rootMargin: '0px 0px -5% 0px',
       }
     )
 
@@ -183,14 +196,12 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
     return () => observer.disconnect()
   }, [])
 
-  const translateX = from === 'left' ? '-100px' : '100px'
-  const [isMobile, setIsMobile] = useState(false)
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
+  // Mobile: smaller translate (24px) to avoid Safari GPU layer exhaustion
+  // Desktop: original 100px offset
+  const translateX = isMobile
+    ? (from === 'left' ? '-24px' : '24px')
+    : (from === 'left' ? '-100px' : '100px')
+
   const resolvedOffset = isMobile ? '0px' : offsetX
   const positionStyle = from === 'left'
     ? { marginLeft: resolvedOffset, marginRight: 'auto' }
@@ -202,9 +213,10 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
       className={`${width} ${marginBottom}`}
       style={{
         ...positionStyle,
-        opacity: isMobile ? 1 : (isVisible ? 1 : 0),
-        transform: isMobile ? 'none' : (isVisible ? 'translateX(0)' : `translateX(${translateX})`),
-        transition: isMobile ? 'none' : 'opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)',
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateX(0)' : `translateX(${translateX})`,
+        transition: 'opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)',
+        willChange: isVisible ? 'auto' : 'opacity, transform',
       }}
     >
       <div className={`relative ${aspect} overflow-hidden`}>
