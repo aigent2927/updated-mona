@@ -4,7 +4,7 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="sticky top-0 w-full h-screen overflow-hidden bg-foreground"
+      className="relative w-full h-screen overflow-hidden bg-foreground"
       aria-label="Hero"
     >
       {/* Editorial hero image */}

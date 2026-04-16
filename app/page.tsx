@@ -10,9 +10,7 @@ export default function Page() {
     <main>
       <IntroAnimation />
       <NavBar />
-      <div style={{ height: '200vh' }}>
-        <HeroSection />
-      </div>
+      <HeroSection />
       <ProjectsSection />
       <AboutSection />
       <ContactSection />
