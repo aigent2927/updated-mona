@@ -202,9 +202,9 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
       className={`${width} ${marginBottom}`}
       style={{
         ...positionStyle,
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateX(0)' : `translateX(${translateX})`,
-        transition: 'opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)',
+        opacity: isMobile ? 1 : (isVisible ? 1 : 0),
+        transform: isMobile ? 'none' : (isVisible ? 'translateX(0)' : `translateX(${translateX})`),
+        transition: isMobile ? 'none' : 'opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)',
       }}
     >
       <div className={`relative ${aspect} overflow-hidden`}>

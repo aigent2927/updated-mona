@@ -83,9 +83,14 @@ export function AboutSection() {
                     <p className="text-[12px] tracking-[0.14em] uppercase text-muted-foreground/60 mb-0.5">
                       Featured in
                     </p>
-                    <p className="text-sm font-light text-foreground">
+                    <a
+                      href="https://www.instagram.com/p/DRu6HmyEzRx/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-light text-foreground border-b border-foreground/30 hover:border-foreground transition-colors duration-200 pb-px"
+                    >
                       The Vanilla Issue
-                    </p>
+                    </a>
                   </li>
                   <li>
                     <p className="text-[12px] tracking-[0.14em] uppercase text-muted-foreground/60 mb-0.5">
