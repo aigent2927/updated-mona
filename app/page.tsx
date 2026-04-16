@@ -10,8 +10,10 @@ export default function Page() {
     <main>
       <IntroAnimation />
       <NavBar />
-      <HeroSection />
-      <ProjectsSection />
+      <div className="relative">
+        <HeroSection />
+        <ProjectsSection />
+      </div>
       <AboutSection />
       <ContactSection />
     </main>

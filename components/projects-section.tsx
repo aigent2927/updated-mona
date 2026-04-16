@@ -415,49 +415,7 @@ function Lightbox({
 
 export function ProjectsSection() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
-  const sectionRef = useRef<HTMLElement>(null)
-  const [translateY, setTranslateY] = useState(0)
-  const rafRef = useRef<number | null>(null)
-  const currentY = useRef(0)
-  const targetY = useRef(0)
 
-  useEffect(() => {
-    const RISE = 60
-
-    const computeTarget = () => {
-      // If user hasn't scrolled at all, never apply any transform
-      if (window.scrollY <= 0) return 0
-      const section = sectionRef.current
-      if (!section) return 0
-      const rect = section.getBoundingClientRect()
-      const vh = window.innerHeight
-      // Entry zone: from when section top is 20px below viewport bottom down to 50% of vh
-      const entryStart = vh - 20
-      const entryEnd = vh * 0.5
-      const sectionTop = rect.top
-      if (sectionTop >= entryStart) return 0
-      if (sectionTop <= entryEnd) return -RISE
-      // Ease-out cubic
-      const progress = 1 - (sectionTop - entryEnd) / (entryStart - entryEnd)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      return -RISE * eased
-    }
-
-    const tick = () => {
-      targetY.current = computeTarget()
-      currentY.current += (targetY.current - currentY.current) * 0.1
-      const snapped = Math.abs(currentY.current - targetY.current) < 0.05
-        ? targetY.current
-        : currentY.current
-      setTranslateY(parseFloat(snapped.toFixed(2)))
-      rafRef.current = requestAnimationFrame(tick)
-    }
-
-    rafRef.current = requestAnimationFrame(tick)
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current)
-    }
-  }, [])
 
   const openLightbox = (_src: string, _alt: string) => {
     const idx = lookbookImages.findIndex((img) => img.src === _src)
@@ -469,10 +427,8 @@ export function ProjectsSection() {
 
   return (
     <section
-      ref={sectionRef}
       id="projects"
       className="relative z-10 bg-background px-6 md:px-12 pt-28 pb-12"
-      style={{ transform: `translateY(${translateY}px)` }}
       aria-labelledby="projects-heading"
     >
       <div className="flex items-baseline justify-center mb-20 md:mb-28">
