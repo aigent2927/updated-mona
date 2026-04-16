@@ -96,9 +96,14 @@ export function AboutSection() {
                     <p className="text-[12px] tracking-[0.14em] uppercase text-muted-foreground/60 mb-0.5">
                       Finalist
                     </p>
-                    <p className="text-sm font-light text-foreground leading-snug">
+                    <a
+                      href="https://www.linkedin.com/posts/mariona-ramos-91a637155_very-grateful-that-my-final-year-collection-activity-7395035581866561537-gjVY?utm_source=share&utm_medium=member_desktop&rcm=ACoAACVKf2YB7VYCD4wWtufEpby1WUyAHmr1xKg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-light text-foreground border-b border-foreground/30 hover:border-foreground transition-colors duration-200 pb-px"
+                    >
                       Runhua Award Contest 2025
-                    </p>
+                    </a>
                     <p className="text-[12px] tracking-[0.06em] text-muted-foreground mt-1 leading-relaxed">
                       Jiangxi Institute of Fashion Technology (JIFT),<br />
                       Nanchang, China
