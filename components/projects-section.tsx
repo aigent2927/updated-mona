@@ -216,7 +216,6 @@ function EditorialImage({ src, alt, from, offsetX, width, aspect, marginBottom }
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateX(0)' : `translateX(${translateX})`,
         transition: 'opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)',
-        willChange: isVisible ? 'auto' : 'opacity, transform',
       }}
     >
       <div className={`relative ${aspect} overflow-hidden`}>
