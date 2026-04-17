@@ -26,7 +26,14 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
+      },
+    ],
+    formats: ['image/webp'],
+    minimumCacheTTL: 2592000,
   },
   async headers() {
     return [
