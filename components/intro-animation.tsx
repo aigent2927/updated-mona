@@ -10,9 +10,6 @@ export function IntroAnimation() {
   const [phase, setPhase] = useState<Phase>('hold')
 
   useEffect(() => {
-    // Always reset scroll to top on every page load / refresh
-    window.scrollTo(0, 0)
-
     const isFirstVisit = !sessionStorage.getItem('mona_visited')
     sessionStorage.setItem('mona_visited', '1')
 

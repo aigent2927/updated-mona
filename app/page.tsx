@@ -8,6 +8,36 @@ import { IntroAnimation } from '@/components/intro-animation'
 export default function Page() {
   return (
     <main>
+      {/* SEO: visually hidden, not rendered on screen */}
+      <h1 className="sr-only">
+        Mona — Fashion Designer &amp; Pattern Maker based in Barcelona
+      </h1>
+      <div className="sr-only">
+        <p>
+          Mariona Ramos (Mona) is a Barcelona-based fashion designer and creative pattern maker
+          working internationally. Her work is shaped through contrast — a deliberate response to a
+          contemporary landscape that feels increasingly neutral, functional, and quiet.
+        </p>
+        <p>
+          Her design practice is built on visual strength and ornament, with the conviction that
+          fashion should provoke, captivate, and command presence. Rather than aiming to please, her
+          work seeks to spark curiosity. FW25 collection Puppet Riot — inspired by the Blitz Kids of
+          1980s London — brings this philosophy to life through repurposed and vintage fabrics:
+          upholstery, curtains, and domestic textiles transformed into striking, theatrical pieces.
+        </p>
+        <p>
+          With professional experience at Viktor &amp; Rolf and Tania Morenilla. Featured in The
+          Vanilla Issue. Finalist at the Runhua Award Contest 2025, Jiangxi Institute of Fashion
+          Technology, Nanchang, China. Open for bespoke commissions, pattern making, and editorial
+          collaborations.
+        </p>
+        <p>
+          fashion designer Barcelona — diseñadora de moda Barcelona — bespoke fashion design —
+          patronista Barcelona — diseño de moda editorial — fashion designer available for commissions
+          — moda Barcelona — creative pattern maker Barcelona
+        </p>
+      </div>
+
       <IntroAnimation />
       <NavBar />
       <HeroSection />

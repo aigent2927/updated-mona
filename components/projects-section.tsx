@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react'
 const editorialImages = [
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_28-Wm47vKHouboCZAdtYl1uJUyNCjXEhd.jpg',
-    alt: 'Model with puppet strings and colorful layered vest',
+    alt: 'Mona Puppet Riot FW25 — model with puppet strings and colorful layered vest, theatrical fashion Barcelona',
     from: 'left',
     offsetX: '5%',
     width: 'w-[65%] md:w-[36%]',
@@ -16,7 +16,7 @@ const editorialImages = [
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_06-ZoLWXp5zcncWvF2sBmO17NL8JIxl8n.jpg',
-    alt: 'Overhead view of model reclined on patterned floor',
+    alt: 'Mona Puppet Riot FW25 — overhead editorial shot, repurposed vintage fabric fashion design',
     from: 'right',
     offsetX: '2%',
     width: 'w-[82%] md:w-[52%]',
@@ -25,7 +25,7 @@ const editorialImages = [
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_27-chlqhAdAsvMoOzXUZOhM77jRTGq1ZY.jpg',
-    alt: 'Model with puffy sleeve blouse and floral skirt',
+    alt: 'Mona Puppet Riot FW25 — puffy sleeve blouse with floral brocade skirt, pattern maker Barcelona',
     from: 'left',
     offsetX: '14%',
     width: 'w-[55%] md:w-[30%]',
@@ -34,7 +34,7 @@ const editorialImages = [
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_17-rmsGNl6Ona8KyCMY56s41CFepdj0El.jpg',
-    alt: 'Model in tweed jacket with burgundy pants',
+    alt: 'Mona Puppet Riot FW25 — upholstery tweed jacket with burgundy trousers, Mariona Ramos fashion design',
     from: 'right',
     offsetX: '8%',
     width: 'w-[58%] md:w-[33%]',
@@ -47,7 +47,7 @@ const editorialImages = [
 const editorialImagesAfter = [
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_14-USAxdSCRHMUr25TsjY3mG1lswT96jk.jpg',
-    alt: 'Seated model with star collar and brocade gown',
+    alt: 'Mona Puppet Riot FW25 — seated model with star collar and brocade gown, theatrical knitwear Barcelona',
     from: 'right',
     offsetX: '12%',
     width: 'w-[55%] md:w-[28%]',
@@ -56,7 +56,7 @@ const editorialImagesAfter = [
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_38-G5rZV83cOcwbZWEfzKa0PswptXWEEO.jpg',
-    alt: 'Two models in kitchen scene',
+    alt: 'Mona Puppet Riot FW25 — two models in maximalist fashion editorial, domestic textile collection',
     from: 'left',
     offsetX: '10%',
     width: 'w-[62%] md:w-[36%]',
@@ -65,7 +65,7 @@ const editorialImagesAfter = [
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_35-7E2MRMsF40I6Q7FIYcSxqHw5ioqxON.jpg',
-    alt: 'Two models in checkered outfits on daybed',
+    alt: 'Mona Puppet Riot FW25 — two models in checkered repurposed fabric outfits, bespoke fashion Barcelona',
     from: 'right',
     offsetX: '6%',
     width: 'w-[68%] md:w-[40%]',
@@ -74,7 +74,7 @@ const editorialImagesAfter = [
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_02-FO30gUT6uwU222bsEbLYRwgqZSjmjb.jpg',
-    alt: 'Seated model in red hand-knit sweater',
+    alt: 'Mona Puppet Riot FW25 — model in hand-knit red sweater, custom knitwear design Mariona Ramos',
     from: 'left',
     offsetX: '20%',
     width: 'w-[52%] md:w-[30%]',
@@ -83,7 +83,7 @@ const editorialImagesAfter = [
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_22-FmbV1UwqHCw1MSAPvCJe5rQiJ5b2Io.jpg',
-    alt: 'Library scene with floral jacket and red tiered skirt',
+    alt: 'Mona Puppet Riot FW25 — editorial scene with floral jacket and red tiered brocade skirt, Barcelona fashion designer',
     from: 'left',
     offsetX: '0%',
     width: 'w-[90%] md:w-[58%]',
@@ -92,7 +92,7 @@ const editorialImagesAfter = [
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_19-Delehd6usN5SYVBg679Yz4zbW3rdli.jpg',
-    alt: 'Low angle of model in tweed jacket',
+    alt: 'Mona Puppet Riot FW25 — low angle editorial shot, upholstery tweed jacket Mariona Ramos',
     from: 'right',
     offsetX: '0%',
     width: 'w-[80%] md:w-[50%]',
@@ -101,7 +101,7 @@ const editorialImagesAfter = [
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_25-WYZR0p5tHl51cag4r9mSV7xmM6udDZ.jpg',
-    alt: 'Seated model in teal fur coat',
+    alt: 'Mona Puppet Riot FW25 — model in teal vintage fur coat, theatrical fashion Barcelona',
     from: 'left',
     offsetX: '25%',
     width: 'w-[48%] md:w-[25%]',
@@ -114,35 +114,35 @@ const editorialImagesAfter = [
 const lookbookImages = [
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Lookbook_01-ebuNAn3CMp3Z7jZIxp8VF7wgqKQrHy.jpg',
-    alt: 'Lookbook 01',
+    alt: 'Puppet Riot FW25 by Mona — Look 1, theatrical fashion design Barcelona',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Lookbook_05-FxGew7UAG3gURxtkkjAX9lxbIERSMx.jpg',
-    alt: 'Lookbook 05',
+    alt: 'Puppet Riot FW25 by Mona — Look 5, hand-knit knitwear and brocade ensemble',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Lookbook_12-JzkibWIRkN3VZuytFBqBorFk37ETIH.jpg',
-    alt: 'Lookbook 12',
+    alt: 'Puppet Riot FW25 by Mona — Look 12, vintage fabric repurposed collection',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Lookbook_13-YLVhdPECzvHs1KODP7FiJaDAlcJca3.jpg',
-    alt: 'Lookbook 13',
+    alt: 'Puppet Riot FW25 by Mona — Look 13, maximalist fashion editorial',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Lookbook_16-7fbHEeaCFsj6WtdL1ZMwJOzA6Pahaz.jpg',
-    alt: 'Lookbook 16',
+    alt: 'Puppet Riot FW25 by Mona — Look 16, theatrical brocade fashion design',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Lookbook_19-3UUZlSvk3gyw9r9n70Kwf8UBhDh7er.jpg',
-    alt: 'Lookbook 19',
+    alt: 'Puppet Riot FW25 by Mona — Look 19, ornamental pattern making Barcelona designer',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Lookbook_22-smOaNby3M2wE6TzOPqtyGhwih7rlbI.jpg',
-    alt: 'Lookbook 22',
+    alt: 'Puppet Riot FW25 by Mona — Look 22, repurposed upholstery fabric fashion',
   },
   {
     src: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Lookbook_26-Z3gxDbM4OGhCIbf2VQCkvrN0hb4mXR.jpg',
-    alt: 'Lookbook 26',
+    alt: 'Puppet Riot FW25 by Mona — Look 26, final look, Mariona Ramos fashion designer',
   },
 ]
 
@@ -477,7 +477,7 @@ export function ProjectsSection() {
           >
             <SecondaryImage
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_33-Sq8nyhm0Y4aBgZ7VcJxwZMvpTAjCTU.jpg"
-              alt="Model seated in checkered outfit with puppet string"
+              alt="Mona Puppet Riot FW25 — model seated in checkered vintage fabric outfit with puppet string detail"
             />
           </div>
         </div>
