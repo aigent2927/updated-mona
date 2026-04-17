@@ -76,12 +76,12 @@ export function ContactSection() {
                   Instagram
                 </p>
                 <a
-                  href="https://www.instagram.com/01.mariona/"
+                  href="https://www.instagram.com/mmmonamona/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm font-light text-foreground hover:text-muted-foreground transition-colors duration-200"
                 >
-                  @01.mariona
+                  @mmmonamona
                 </a>
               </li>
               <li>
