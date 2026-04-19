@@ -484,7 +484,7 @@ export function ProjectsSection() {
         {/* Credits: sit in the white space to the right of image 1 */}
         <CreditBlock
           lines={[
-            'Designer: @01.mariona',
+            'Designer: @mmmonamona',
             'Photo: Angely Quintero @annge.ly',
             'Victor Alcalde @valcalde_',
           ]}
