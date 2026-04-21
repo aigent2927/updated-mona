@@ -68,9 +68,9 @@ export default function Page() {
           aria-hidden="true"
           style={{
             transition: 'opacity 0.8s ease',
-            opacity: selloVisible ? 0.2 : 0,
+            opacity: selloVisible ? 1 : 0,
           }}
-          className="fixed bottom-6 right-6 w-48 z-0 pointer-events-none select-none mix-blend-multiply"
+          className="fixed bottom-6 right-6 w-24 z-0 pointer-events-none select-none mix-blend-multiply"
         />
       )}
       <IntroAnimation />
