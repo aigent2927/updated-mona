@@ -10,11 +10,22 @@ import { IntroAnimation } from '@/components/intro-animation'
 
 export default function Page() {
   const [pastHero, setPastHero] = useState(false)
+  const [selloVisible, setSelloVisible] = useState(false)
 
   useEffect(() => {
+    if (history.scrollRestoration) {
+      history.scrollRestoration = 'manual'
+    }
     window.scrollTo(0, 0)
+
     const handleScroll = () => {
-      setPastHero(window.scrollY > window.innerHeight)
+      const past = window.scrollY > window.innerHeight
+      setPastHero(past)
+      if (past) {
+        setTimeout(() => setSelloVisible(true), 50)
+      } else {
+        setSelloVisible(false)
+      }
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -55,7 +66,11 @@ export default function Page() {
           src="/images/sello mona.png"
           alt=""
           aria-hidden="true"
-          className="fixed bottom-6 right-6 w-48 opacity-20 z-0 pointer-events-none select-none mix-blend-multiply"
+          style={{
+            transition: 'opacity 0.8s ease',
+            opacity: selloVisible ? 0.2 : 0,
+          }}
+          className="fixed bottom-6 right-6 w-48 z-0 pointer-events-none select-none mix-blend-multiply"
         />
       )}
       <IntroAnimation />
