@@ -30,13 +30,13 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://monasmona.com',
+    canonical: 'https://www.monasmona.com',
   },
   openGraph: {
     title: 'Mona — Fashion Designer | Barcelona',
     description:
       'Fashion designer from Barcelona shaped through contrast, visual strength, and ornament. Work that sparks curiosity and commands presence.',
-    url: 'https://monasmona.com',
+    url: 'https://www.monasmona.com',
     siteName: 'Mona — Fashion Designer',
     images: [
       {
@@ -73,7 +73,7 @@ const jsonLd = {
       name: 'Mariona Ramos',
       alternateName: 'Mona',
       jobTitle: 'Fashion Designer & Pattern Maker',
-      url: 'https://monasmona.com',
+      url: 'https://www.monasmona.com',
       image:
         'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/TFEModa2425_Mariona_Ramos_Editorial_03-Vqb1bfz56IBsZaGXI6g8RzQNQ9gtQn.jpg',
       address: {
@@ -104,7 +104,7 @@ const jsonLd = {
     {
       '@type': 'WebSite',
       name: 'Mona — Fashion Designer',
-      url: 'https://monasmona.com',
+      url: 'https://www.monasmona.com',
       author: { '@type': 'Person', name: 'Mariona Ramos' },
     },
   ],
