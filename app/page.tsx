@@ -38,7 +38,7 @@ export default function Page() {
         </p>
       </div>
 
-      <img src="/images/sello_mona.png" alt="" aria-hidden="true" className="fixed bottom-6 right-6 w-48 opacity-30 -z-10 pointer-events-none select-none" />
+      <img src="/images/sello_mona.png" alt="" aria-hidden="true" className="fixed bottom-6 right-6 w-48 opacity-30 z-50 pointer-events-none select-none" />
       <IntroAnimation />
       <NavBar />
       <HeroSection />
