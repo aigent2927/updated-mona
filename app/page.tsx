@@ -12,6 +12,7 @@ export default function Page() {
   const [pastHero, setPastHero] = useState(false)
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     const handleScroll = () => {
       setPastHero(window.scrollY > window.innerHeight)
     }
@@ -54,7 +55,7 @@ export default function Page() {
           src="/images/sello mona.png"
           alt=""
           aria-hidden="true"
-          className="fixed bottom-6 right-6 w-48 opacity-20 -z-10 pointer-events-none select-none"
+          className="fixed bottom-6 right-6 w-48 opacity-20 z-0 pointer-events-none select-none mix-blend-multiply"
         />
       )}
       <IntroAnimation />
