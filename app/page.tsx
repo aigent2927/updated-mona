@@ -38,7 +38,52 @@ export default function Page() {
         </p>
       </div>
 
-      <img src="/images/sello_mona.png" alt="sello" className="fixed bottom-6 right-6 w-48 z-50" />
+      'use client'
+
+import { useEffect, useState } from 'react'
+import { NavBar } from '@/components/nav-bar'
+import { HeroSection } from '@/components/hero-section'
+import { ProjectsSection } from '@/components/projects-section'
+import { AboutSection } from '@/components/about-section'
+import { ContactSection } from '@/components/contact-section'
+import { IntroAnimation } from '@/components/intro-animation'
+
+export default function Page() {
+  const [pastHero, setPastHero] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setPastHero(window.scrollY > window.innerHeight)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return (
+    <main>
+      <h1 className="sr-only">
+        Mona — Fashion Designer &amp; Pattern Maker based in Barcelona
+      </h1>
+      <div className="sr-only">
+        {/* todo el contenido sr-only igual que antes */}
+      </div>
+      {pastHero && (
+        <img
+          src="/images/sello mona.png"
+          alt=""
+          aria-hidden="true"
+          className="fixed bottom-6 right-6 w-48 opacity-20 -z-10 pointer-events-none select-none"
+        />
+      )}
+      <IntroAnimation />
+      <NavBar />
+      <HeroSection />
+      <ProjectsSection />
+      <AboutSection />
+      <ContactSection />
+    </main>
+  )
+}
       <IntroAnimation />
       <NavBar />
       <HeroSection />
