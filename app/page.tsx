@@ -63,7 +63,7 @@ export default function Page() {
       </div>
       {pastHero && (
         <img
-          src="/images/sello mona.png"
+          src="/images/sello_mona.png"
           alt=""
           aria-hidden="true"
           style={{
