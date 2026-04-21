@@ -70,7 +70,7 @@ export default function Page() {
             transition: 'opacity 0.8s ease',
             opacity: selloVisible ? 1 : 0,
           }}
-          className="fixed bottom-4 right-4 w-20 md:w-32 z-0 pointer-events-none select-none mix-blend-multiply"
+          className="fixed bottom-4 right-4 w-24 md:w-32 z-0 pointer-events-none select-none mix-blend-multiply"
         />
       )}
       <IntroAnimation />
